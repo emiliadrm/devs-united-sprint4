@@ -1,9 +1,10 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import logo from './logo.svg';
 import './App.css';
 import { firestore } from "./firebase"
 
 function App() {
+const [message, setMessage] = useState([]);
 
   useEffect(() => {
     firestore.collection("tweets")
@@ -11,28 +12,21 @@ function App() {
     .then((snapshot) => {
       snapshot.forEach((doc) => {
         console.log(doc.data());
+        setMessage(doc.data());
       })
     })    
-  }, []);
+  }, [message]);
 
   console.log('TESTING');
+  console.log('MENSAJE',message);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <p>Este es un mensaje</p>
+        <p>{message.tweet}</p>
+        <p>{message.mensaje}</p>
+      </div>
     </div>
   );
 }
