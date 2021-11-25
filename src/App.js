@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 import logo from './logo.svg';
 import './App.css';
-import { firestore } from "./firebase"
+import { firestore } from "./firebase";
+import TextField  from "./components/InputComponent";
+import TweetField from "./components/TweetComponent";
 
 function App() {
 const [message, setMessage] = useState([]);
@@ -27,6 +29,8 @@ const [message, setMessage] = useState([]);
         <p>{message.tweet}</p>
         <p>{message.mensaje}</p>
       </div>
+      < TextField />
+      < TweetField />
     </div>
   );
 }
