@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react"
-import logo from './logo.svg';
-import './App.css';
+import './styles/general.css';
+import './styles/desktop.css';
+import './styles/mobile.css';
 import { firestore } from "./firebase";
 import TextField  from "./components/InputComponent";
 import TweetField from "./components/TweetComponent";
+import TestComponent from "./TestComponent";
 
 function App() {
 const [message, setMessage] = useState([]);
@@ -24,13 +26,12 @@ const [message, setMessage] = useState([]);
 
   return (
     <div className="App">
-      <div>
+      {/*<div>
         <p>Este es un mensaje</p>
         <p>{message.tweet}</p>
         <p>{message.mensaje}</p>
-      </div>
-      < TextField />
-      < TweetField />
+      </div>*/}
+      < TestComponent />
     </div>
   );
 }
