@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import logo from './logo.svg';
+import logo from './logo.svg'; //hay que cambiar el logo, luego lo hago.
 import './App.css';
 import { firestore } from "./firebase";
 import TextField  from "./components/InputComponent";
