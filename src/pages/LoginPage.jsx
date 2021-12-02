@@ -1,8 +1,8 @@
 import React from "react";
-import logo from "./resources/logo.svg"
-import GoogleButton from "./components/GoogleSignButton"
+import logo from "../resources/logo.svg"
+import GoogleButton from "../components/GoogleSignButton"
 
-function Test() {
+function LoginPage() {
     return(
         <div className="bodyLogin">
             <img className="devLogo" src={logo} alt="" />
@@ -16,4 +16,4 @@ function Test() {
     )
 }
 
-export default Test;
+export default LoginPage;

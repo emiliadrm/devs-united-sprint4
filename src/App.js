@@ -3,9 +3,7 @@ import './styles/style.css';
 import './styles/desktop.css';
 import './styles/mobile.css';
 import { firestore } from "./firebase";
-import TextField  from "./components/InputComponent";
-import TweetField from "./components/TweetComponent";
-import TestComponent from "./TestComponent";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
 const [message, setMessage] = useState([]);
@@ -26,14 +24,7 @@ const [message, setMessage] = useState([]);
 
   return (
     <div className="App">
-      {/*<div>
-        <p>Este es un mensaje</p>
-        <p>{message.tweet}</p>
-        <p>{message.mensaje}</p>
-      </div>
-      < TextField/>
-      < TweetField/>*/}
-      < TestComponent />
+      < LoginPage />
     </div>
   );
 }
