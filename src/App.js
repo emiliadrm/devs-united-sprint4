@@ -7,9 +7,11 @@ import { firestore } from "./firebase";
 import LoginPage from "./pages/LoginPage";
 import Perfil from "./pages/UserProfile"
 import Feed from "./pages/FeedPage"
+import Config from "./pages/ConfigPage"
 
 function App() {
 const [message, setMessage] = useState([]);
+const [user, setUser] = useState(null);
 
   useEffect(() => {
     console.log('DEBUG');
@@ -41,6 +43,7 @@ const [message, setMessage] = useState([]);
         <Route path="/" element={<LoginPage />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/feed" element={<Feed handleButtonTweet={handleButton}/>} />
+        <Route path="/config" element={<Config />} />
     </Routes>
     </div>
   );
