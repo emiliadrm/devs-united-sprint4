@@ -1,10 +1,11 @@
 import React from "react";
 
-function TextField() {
+function TextField({ handleButtonTweet }) {
+
     return (
             <form action="">
                 <input type="text" className=""/>
-                <input type="submit" className=""/>
+                <input type="submit" className="" onChange={handleButtonTweet}/>
             </form>
     )
 }

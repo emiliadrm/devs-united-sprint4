@@ -1,32 +1,50 @@
 import React, { useEffect, useState } from "react"
+import { Route, Routes } from "react-router-dom"
 import './styles/style.css';
 import './styles/desktop.css';
 import './styles/mobile.css';
 import { firestore } from "./firebase";
 import LoginPage from "./pages/LoginPage";
+import Perfil from "./pages/UserProfile"
+import Feed from "./pages/FeedPage"
 
 function App() {
 const [message, setMessage] = useState([]);
 
   useEffect(() => {
+    console.log('DEBUG');
+    setTimeout(() => {
+      setMessage('Hola');
+    }, 5000);
+    /*
     firestore.collection("tweets")
     .get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
-        /*console.log(doc.data());*/
         setMessage(doc.data());
       })
     })    
+    */
   }, [message]);
 
   /*console.log('TESTING');
   console.log('MENSAJE',message);*/
 
+  const handleButton = (e) => {
+    e.preventDefault();
+     firestore.collection("tweets").add(message);
+    }
+
   return (
     <div className="App">
-      < LoginPage />
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/feed" element={<Feed handleButtonTweet={handleButton}/>} />
+    </Routes>
     </div>
   );
 }
+
 
 export default App;
