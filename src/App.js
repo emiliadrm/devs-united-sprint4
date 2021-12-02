@@ -15,14 +15,14 @@ const [message, setMessage] = useState([]);
     .get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
-        console.log(doc.data());
+        /*console.log(doc.data());*/
         setMessage(doc.data());
       })
     })    
   }, [message]);
 
-  console.log('TESTING');
-  console.log('MENSAJE',message);
+  /*console.log('TESTING');
+  console.log('MENSAJE',message);*/
 
   return (
     <div className="App">
