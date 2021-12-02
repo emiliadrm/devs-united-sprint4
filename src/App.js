@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import './styles/general.css';
+import './styles/style.css';
 import './styles/desktop.css';
 import './styles/mobile.css';
 import { firestore } from "./firebase";
@@ -30,7 +30,9 @@ const [message, setMessage] = useState([]);
         <p>Este es un mensaje</p>
         <p>{message.tweet}</p>
         <p>{message.mensaje}</p>
-      </div>*/}
+      </div>
+      < TextField/>
+      < TweetField/>*/}
       < TestComponent />
     </div>
   );
