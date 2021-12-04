@@ -10,32 +10,26 @@ import Feed from "./pages/FeedPage"
 import Config from "./pages/ConfigPage"
 
 function App() {
-const [message, setMessage] = useState([]);
-const [user, setUser] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    console.log('DEBUG');
-    setTimeout(() => {
-      setMessage('Hola');
-    }, 5000);
-    /*
-    firestore.collection("tweets")
-    .get()
-    .then((snapshot) => {
-      snapshot.forEach((doc) => {
-        setMessage(doc.data());
+    const unsubscribe = firestore.collection("tweets")
+    .onSnapshot((snapshot) => {
+      const tweets = snapshot.docs.map((doc) => {
+        const valor = doc.data();
+        return valor;
       })
-    })    
-    */
-  }, [message]);
 
-  /*console.log('TESTING');
-  console.log('MENSAJE',message);*/
+      setMessages(tweets);
+    });
+    return unsubscribe;
+  }, []);
 
-  const handleButton = (e) => {
+   const handleButton = (e) => {
     e.preventDefault();
-     firestore.collection("tweets").add(message);
-    }
+    firestore.collection("tweets").add(messages);
+  }
 
   return (
     <div className="App">
