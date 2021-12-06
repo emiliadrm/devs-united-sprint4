@@ -1,3 +1,5 @@
+/* LOGIN PAGE */
+
 .bodyLogin {
     display: flex;
     flex-flow: row;
@@ -35,4 +37,67 @@
     color: #60265B;
     font-size: 18px;
     margin-top: 165px;
+}
+
+/*FEED PAGE */
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    background: #250C23;
+    padding: 10px 350px;
+    /*hay formas de poner margin manteniendo el color?*/
+}
+
+.textSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #150714;
+    padding: 20px 350px;
+}
+
+.textInputStyle {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputFieldStyle {
+    background: #2F112D;
+    width: 500px;
+    height: 113px;
+}
+
+.profileStyleFeed {
+    padding: 0 15px 0 0;
+}
+
+.infInputStyle {
+    margin: 5px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.submitInputStyle {
+    font-family: Silkscreen-Bold;
+    font-size: 20px;
+    color: #150714;
+    background: #2F112D;
+    width: 102px;
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.submitInputStyle:hover {
+    background: chartreuse;
+}
+
+.submitInputStyle:focus{
+    background: cornflowerblue;
+}
+
+.submitInputStyle:active{
+    background: crimson;
 }

@@ -11,7 +11,7 @@ import Config from "./pages/ConfigPage"
 
 function App() {
   const [messages, setMessages] = useState([]);
-  const [user, setUser] = useState(null);
+ /* const [user, setUser] = useState(null);*/
 
   useEffect(() => {
     const unsubscribe = firestore.collection("tweets")

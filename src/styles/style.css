@@ -61,6 +61,10 @@ button {
     text-indent: 0;
 }
 
+input {
+    all: unset;
+  }
+  
 /*//////// IMPORTACION DE FUENTES   ////////*/
 
 @font-face { font-family: firacode-regular; 
