@@ -3,23 +3,32 @@ import { Route, Routes } from "react-router-dom"
 import './styles/style.css';
 import './styles/desktop.css';
 import './styles/mobile.css';
-import { firestore } from "./firebase";
+import { firestore, auth, loginWithGoogle, logout } from "./firebase";
+/*IMPORTACION DE PAGINAS PARA LAS RUTAS*/
 import LoginPage from "./pages/LoginPage";
 import Perfil from "./pages/UserProfile"
 import Feed from "./pages/FeedPage"
 import Config from "./pages/ConfigPage"
 
 function App() {
-  const [messages, setMessages] = useState([]);
- /* const [user, setUser] = useState(null);*/
+const [messages, setMessages] = useState([]);
+ const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = firestore.collection("tweets")
     .onSnapshot((snapshot) => {
       const tweets = snapshot.docs.map((doc) => {
-        const valor = doc.data();
-        return valor;
-      })
+        return {
+          user: doc.data().user,
+          color: doc.data().color,
+          likes: doc.data().likes,
+          tweet: doc.data().tweet,
+        };
+      });
+
+      auth.onAuthStateChanged((user) => {
+        setUser(user);
+        console.log(user); });
 
       setMessages(tweets);
     });
