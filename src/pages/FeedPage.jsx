@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppProvider"
+
+
 import TweetField from "../components/TweetComponent"
 import TextField from "../components/InputComponent"
 import Titulo from "../resources/title.svg"
 import Logito from "../resources/logo-small.svg"
 import ProfileDefault from "../resources/profilePicDefault.svg"
 
-export default function Feed({ handleButtonTweet, tweets, tweetM, name, tweet }) {
+export default function Feed({ handleButtonTweet }) {
+    const context = useContext(AppContext);
+
+    console.log('DEBUG', context.tweets)
     return(
         <main>
             <header className="navBar">
@@ -18,12 +24,13 @@ export default function Feed({ handleButtonTweet, tweets, tweetM, name, tweet })
                 <TextField handleButtonTweet={handleButtonTweet}/>
             </section>
             <section className="tweetSection">
-                {props.map ((tweet) => 
-                (
-                    <TweetField />
-                ))} 
+                {context.messages.map((tweet) => 
+                    <TweetField 
+                        tweetMensaje={tweet.tweetMessage}
+                        id={tweet.id}
+                        likes={tweet.likes}
+                    />)} 
             </section>
-            
         </main>
     )
 }
