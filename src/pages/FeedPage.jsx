@@ -17,8 +17,9 @@ export default function Feed({ handleButtonTweet }) {
                 <img src={ProfileDefault} alt="" className="profileStyleFeed"/>
                 <TextField handleButtonTweet={handleButtonTweet}/>
             </section>
-            <section className="">
+            <section className="tweetSection">
                 {/*aqui va el map de los tweets*/}
+                <TweetField/>
                 <TweetField/>
             </section>
             

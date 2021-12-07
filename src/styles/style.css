@@ -130,3 +130,19 @@ body {
     text-align: center;
 }
 
+.userNameStyle {
+    color: #2E132C;
+    font-size: 20px;
+}
+
+.likesSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.test {
+    background: chartreuse;
+    width: 100%;
+    height: 2px;
+}
