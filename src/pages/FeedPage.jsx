@@ -5,7 +5,7 @@ import Titulo from "../resources/title.svg"
 import Logito from "../resources/logo-small.svg"
 import ProfileDefault from "../resources/profilePicDefault.svg"
 
-export default function Feed({ handleButtonTweet }) {
+export default function Feed({ handleButtonTweet, tweets, tweetM, name, tweet }) {
     return(
         <main>
             <header className="navBar">
@@ -18,9 +18,10 @@ export default function Feed({ handleButtonTweet }) {
                 <TextField handleButtonTweet={handleButtonTweet}/>
             </section>
             <section className="tweetSection">
-                {/*aqui va el map de los tweets*/}
-                <TweetField/>
-                <TweetField/>
+                {props.map ((tweet) => 
+                (
+                    <TweetField />
+                ))} 
             </section>
             
         </main>

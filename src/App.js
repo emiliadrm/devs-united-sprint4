@@ -22,13 +22,14 @@ const [messages, setMessages] = useState([]);
           user: doc.data().user,
           color: doc.data().color,
           likes: doc.data().likes,
-          tweet: doc.data().tweet,
+          tweetMessage: doc.data().tweetMessage,
+          id: doc.id
         };
       });
 
-      auth.onAuthStateChanged((user) => {
+      /*auth.onAuthStateChanged((user) => {
         setUser(user);
-        console.log(user); });
+        console.log(user); });*/
 
       setMessages(tweets);
     });
@@ -45,7 +46,7 @@ const [messages, setMessages] = useState([]);
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/feed" element={<Feed handleButtonTweet={handleButton}/>} />
+        <Route path="/feed" element={<Feed name={tweet} tweetM={tweet} handleButtonTweet={handleButton}/>} />
         <Route path="/config" element={<Config />} />
     </Routes>
     </div>

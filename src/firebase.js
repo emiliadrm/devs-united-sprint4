@@ -17,8 +17,8 @@ export const firestore = firebase.firestore()
 // exporta el paquete de firebase para poder usarlo
 export default firebase
 
-/*
-login social con FIREBASE:
+
+/*login social con FIREBASE:
 
 // -- el modulo de la autenticacion --
 export const auth = firebase.auth();
@@ -32,4 +32,4 @@ export const loginWithGoogle = () => auth.signInWithPopup(provider);
 // -- la utilidad para hacer logout --
 export const logout = () => auth.signOut();
 
-*/ 
+*/
