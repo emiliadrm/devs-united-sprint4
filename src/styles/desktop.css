@@ -118,13 +118,6 @@
 }
 
 /*COMPONENTE DEL TWEET*/
-/*mover esto al final*/
-.finalTweetLine {
-    background: #FFFFFF;
-    width: 100%;
-    height: 2px;
-}
-
 
 .tweetSection {
     display: flex;
@@ -135,7 +128,7 @@
 
 .tweetFieldStyle {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     align-items: flex-start;
 }
 
@@ -152,4 +145,10 @@
     letter-spacing: -0.3333333432674408px;
     text-align: left;
     margin: 17px 0 25px;
+}
+
+.deleteStyle{
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-left: 255px;
 }

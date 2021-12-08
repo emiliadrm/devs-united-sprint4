@@ -21,7 +21,7 @@ export default function Feed({ handleButtonTweet }) {
             </header>
             <section className="textSection">
                 <img src={ProfileDefault} alt="" className="profileStyleFeed"/>
-                <TextField handleButtonTweet={handleButtonTweet}/>
+                <TextField handleButton={handleButtonTweet}/>
             </section>
             <section className="tweetSection">
                 {context.messages.map((tweet) => 

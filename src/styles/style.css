@@ -130,6 +130,10 @@ body {
     text-align: center;
 }
 
+
+
+/* TWEET COMPONENTES ESTILOS GENERALES*/
+
 .userNameStyle {
     color: #2E132C;
     font-size: 20px;
@@ -141,8 +145,29 @@ body {
     align-items: center;
 }
 
-.test {
-    background: chartreuse;
-    width: 100%;
+.lineTweet {
+    background: #60265B;
+    width: 571px;
     height: 2px;
+    margin: 26px 0;
 }
+
+svg.heartStyle{
+    color: #FFFFFF;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+svg.heartStyle:hover {
+    color: crimson;
+    cursor: pointer;
+}
+
+/*EL HOVER DEL DELETE ES DISTINTO PORQUE NO ME FUNCIONO COMO EL CORAZON, FUCK YOU DELETE*/
+deleteStyle:hover{
+    width: 20px;
+    height: 20px;
+    background: #2E132C;
+    border-radius: 50%;
+    cursor: pointer;
+} 

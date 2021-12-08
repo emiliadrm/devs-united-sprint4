@@ -1,7 +1,6 @@
 import React from "react";
 
-function TextField({ handleButtonTweet }) {
-
+function TextField({ handleButton }) {
     return (
             <form action="" className="textInputStyle">
                 {/*<input type="text" className="inputFieldStyle" placeholder="What's happening?"/>*/}
@@ -10,7 +9,7 @@ function TextField({ handleButtonTweet }) {
                     <span style={{ color: "#FFFFFF" }}>1</span>
                     <span style={{ color: "#f50d5a" }}>200 max.</span>
                 </div>
-                <input type="submit" className="submitInputStyle" onChange={handleButtonTweet} value="POST"/>
+                <input type="submit" className="submitInputStyle" onChange={handleButton} value="POST"/>
             </form>
     )
 }

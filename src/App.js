@@ -41,17 +41,17 @@ function App() {
      return unsubscribe;
    }, []);
  
-    /*const handleButton = (e) => {
+    const handleButton = (e) => {
      e.preventDefault();
-     firestore.collection("tweets").add(messages);
-   }*/
+     firestore.collection("tweets").add(context.messages);
+   }
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/feed" element={<Feed /*handleButtonTweet={handleButton}*//>} />
+        <Route path="/feed" element={<Feed handleButton={handleButton}/>}/>
         <Route path="/config" element={<Config />} />
       </Routes>
     </div>
