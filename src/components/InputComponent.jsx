@@ -7,32 +7,26 @@ function TextField() {
     const context = useContext(AppContext);
 
     const handleChange = (e) => {
-        console.log('EL ESTADO ANTERIOR ES>');
-        console.log(context.tweetM);
-
-        let newTweet = { 
-            tweetM: e.target.value
-         };
-
-         console.log('EL ESTADO NUEVO ES>');
-         console.log(newTweet);
-
-        context.setTweetM(newTweet);
-      }; 
-    
-      const sendTweetM = (e) => {
         e.preventDefault();
-        firestore.collection("tweets").add(context.tweetM); //el error me sale aca
+        context.setTweetM({ tweetMessage: e.target.value }); }; 
+    
+    const sendTweetM = (e) => {
+        e.preventDefault();
+        firestore
+            .collection("tweets")
+            .add(context.tweetM)
+            .then(() => {
+                context.setTweetM({ tweetMessage:"" });
+            }); 
       };
 
     return (
             <form action="" className="textInputStyle">
-                {/*<input type="text" className="inputFieldStyle" placeholder="What's happening?"/>*/}
                 <textarea 
                     className="inputFieldStyle"
                     placeholder="What's happening?"
                     name="tweetText" 
-                    value={context.tweetM}
+                    value={context.tweetM.tweetMessage}
                     id="" 
                     cols="30" 
                     rows="10" 
