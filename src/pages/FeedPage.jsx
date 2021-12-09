@@ -11,7 +11,6 @@ import ProfileDefault from "../resources/profilePicDefault.svg"
 export default function Feed({ handleButtonTweet }) {
     const context = useContext(AppContext);
 
-    console.log('DEBUG', context.tweets)
     return(
         <main>
             <header className="navBar">
