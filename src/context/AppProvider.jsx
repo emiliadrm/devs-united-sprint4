@@ -4,11 +4,10 @@ export const AppContext = React.createContext();
 
 export default function AppProvider(props) {
   const [messages, setMessages] = useState([]);
-  const [tweetM, setTweetM] = useState({ tweetMessage: "" });
   //const [user, setUser] = useState(null);
 
     return (
-      <AppContext.Provider value={{ messages, setMessages, tweetM, setTweetM}}>
+      <AppContext.Provider value={{ messages, setMessages}}>
         {props.children}
       </AppContext.Provider>
     );
