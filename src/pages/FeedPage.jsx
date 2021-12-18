@@ -3,12 +3,12 @@ import { AppContext } from "../context/AppProvider"
 
 
 import TweetField from "../components/TweetComponent"
-import TextField from "../components/InputComponent"
+import InputComponent from "../components/InputComponent"
 import Titulo from "../resources/title.svg"
 import Logito from "../resources/logo-small.svg"
 import ProfileDefault from "../resources/profilePicDefault.svg"
 
-export default function Feed({ handleButtonTweet }) {
+export default function Feed() {
     const context = useContext(AppContext);
 
     return(
@@ -20,7 +20,7 @@ export default function Feed({ handleButtonTweet }) {
             </header>
             <section className="textSection">
                 <img src={ProfileDefault} alt="" className="profileStyleFeed"/>
-                <TextField handleButton={handleButtonTweet}/>
+                <InputComponent />
             </section>
             <section className="tweetSection">
                 {context.messages.map((tweet) => 
