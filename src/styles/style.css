@@ -171,3 +171,19 @@ deleteStyle:hover{
     border-radius: 50%;
     cursor: pointer;
 } 
+
+.color {
+    display: inline-block;
+    width: 58px;
+    height: 58px;
+    border: 1px solid black;
+    margin: 0 7px;
+  }
+
+  .color.selected {
+      border: 5px solid #FFFFFF;
+  }
+
+  .selectColorClass {
+      align-items: center;
+  }

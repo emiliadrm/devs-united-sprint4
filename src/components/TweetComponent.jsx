@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProfileDefault from "../resources/profilePicDefault.svg";
 import deleteIcon from "../resources/deleteIcon.svg";
-/*import heartR from "../resources/heartR"*/
+// import heartR from "../resources/heartR"*/ /*
+import { AppContext } from "../context/AppProvider"
+// import { firestore auth, loginWithGoogle, logout } from "../firebase";
+
 
 function TweetField({ tweetMensaje, id, likes }) {
+
+    const context = useContext(AppContext);
+    
+ /*   const deleteTweet = (id) => {
+        firestore
+            .doc("tweets")
+            .delete(`tweets/${id}`)
+      };*/
+
     return (
             <div className="tweetFieldStyle" key={id}>
                 <img src={ProfileDefault} alt="" className="profileStyleFeed"/>
                 <div>
                    <div className="infTweetStyle">
-                        <UsernameField/>
+                        <h1 
+                            className="userNameStyle"
+                            style={{ backgroundColor: `${context.pickColor.hex}`}}>
+                            USERNAME
+                        </h1>
                         <p style={{ marginLeft: "12px" }}> - 5 jun.</p>
                         <img src={deleteIcon} alt="" className="deleteStyle" />
                    </div>
@@ -21,14 +37,6 @@ function TweetField({ tweetMensaje, id, likes }) {
     )
 }
 
-function UsernameField() {
-    return(
-        <>
-            <h1 className="userNameStyle" style={{ backgroundColor: "#00DA76" }}>USERNAME</h1>
-            {/*Usar un USECONTEXT para modificar el color de fondo por usuario*/}
-        </>
-    )
-}
 
 function LikeSection ({ likes }) {
     return(
