@@ -7,7 +7,7 @@ import './styles/desktop.css';
 import './styles/mobile.css';
 
 /*CONTEXTO Y FIREBASE CONECTION*/
-import { firestore /*auth, loginWithGoogle, logout */} from "./firebase";
+import { firestore, auth, loginWithGoogle, logout} from "./firebase";
 import { AppContext } from "./context/AppProvider"
 
 /*IMPORTACION DE PAGINAS PARA LAS RUTAS*/
@@ -32,9 +32,9 @@ function App() {
            id: doc.id
          };
        });
-      /* auth.onAuthStateChanged((user) => {
-         setUser(user);
-         console.log(user); });*/
+      auth.onAuthStateChanged((user) => {
+         context.setUser(user);
+         console.log(user); });
        context.setMessages(tweets);
 
      });

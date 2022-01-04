@@ -130,7 +130,26 @@ body {
     text-align: center;
 }
 
+.gLogout {
+    width: 116px;
+    height: 35px;
+    background-color: #F50D5A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
 
+.gLogout:hover {
+    background-color: #FFFFFF;
+}
+
+.nameLogout {
+    font-family: silkscreen-bold;
+    font-size: 16px;
+    color: #250C23;
+    padding-right: 5px;
+}
 
 /* TWEET COMPONENTES ESTILOS GENERALES*/
 

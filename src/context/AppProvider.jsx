@@ -6,10 +6,10 @@ export default function AppProvider(props) {
   const [messages, setMessages] = useState([]);
   const [tweetM, setTweetM] = useState({ tweetMessage: "" });
   const [pickColor, setPickColor] = useState(colorList[0]);
-  //const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
     return (
-      <AppContext.Provider value={{ messages, setMessages, tweetM, setTweetM, pickColor, setPickColor}}>
+      <AppContext.Provider value={{ messages, setMessages, tweetM, setTweetM, pickColor, setPickColor, user, setUser}}>
         {props.children}
       </AppContext.Provider>
     );

@@ -1,4 +1,4 @@
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
     .bodyLogin {
         display: flex;
         flex-direction: column;
@@ -8,5 +8,15 @@
     .devLogo {
         max-width: 311px;
         max-height: 207px;
+    }
+
+}
+
+@media screen and (max-width: 1280px) {
+    .navBar {
+        display: flex;
+        justify-content: space-around;
+        background: #250C23;
+        padding: 10px 25px;
     }
 }

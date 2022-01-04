@@ -7,6 +7,7 @@ import InputComponent from "../components/InputComponent"
 import Titulo from "../resources/title.svg"
 import Logito from "../resources/logo-small.svg"
 import ProfileDefault from "../resources/profilePicDefault.svg"
+import { LogoutButton } from "../components/GoogleSignButton"
 
 export default function Feed() {
     const context = useContext(AppContext);
@@ -17,6 +18,7 @@ export default function Feed() {
                 <img src={ProfileDefault} width="33px"alt="" />
                 <img src={Logito} alt="" />
                 <img src={Titulo} alt="" />
+                <LogoutButton/>
             </header>
             <section className="textSection">
                 <img src={ProfileDefault} alt="" className="profileStyleFeed"/>
