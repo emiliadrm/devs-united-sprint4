@@ -1,10 +1,11 @@
 import React from "react";
 import gLogo from "../resources/googlelogo.svg"
 import iconLogout from "../resources/logout.svg"
+import { loginWithGoogle, logout} from "../firebase";
 
 function GoogleButton() {
     return(
-        <button className="gButton" onClick={futuroHandler}>
+        <button className="gButton" onClick={loginWithGoogle}>
             <div className="gLogo"><img className="gImg" src={gLogo} alt="" /></div>
             <p className="gText">Sign in with Google</p>
         </button>
@@ -13,7 +14,7 @@ function GoogleButton() {
 
 export function LogoutButton() {
     return(
-        <button className="gLogout" onClick={futuroHandler}>
+        <button className="gLogout" onClick={logout}>
             <p className="nameLogout">LOGOUT</p>
             <img src={iconLogout} alt="" />
         </button>
@@ -21,7 +22,3 @@ export function LogoutButton() {
 }
 
 export default GoogleButton;
-
-function futuroHandler() {
-    console.log('TEST, this function will have a Handler');
-}

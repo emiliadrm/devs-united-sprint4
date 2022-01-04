@@ -81,6 +81,9 @@
 }
 
 .profileStyleFeed {
+    max-width: 56px;
+    min-width: 56px;
+    border-radius: 50%;
     padding: 0 15px 0 0;
 }
 
@@ -137,6 +140,7 @@
 
 .infTweetStyle {
     display: flex;
+    justify-content: space-between;
 }
 
 .showTweetStyle {
@@ -150,8 +154,13 @@
     margin: 17px 0 25px;
 }
 
+.infNameTime {
+    display: flex;
+    flex-flow: row;
+}
+
 .deleteStyle{
     color: #FFFFFF;
     cursor: pointer;
-    margin-left: 255px;
 }
+

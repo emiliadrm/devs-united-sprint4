@@ -18,16 +18,20 @@ function TweetField({ tweetMensaje, id, likes }) {
 
     return (
             <div className="tweetFieldStyle" key={id}>
-                <img src={ProfileDefault} alt="" className="profileStyleFeed"/>
+                <img src={context.user.photoURL} alt="" className="profileStyleFeed"/>
                 <div>
                    <div className="infTweetStyle">
-                        <h1 
-                            className="userNameStyle"
-                            style={{ backgroundColor: `${context.pickColor.hex}`}}>
-                            USERNAME
-                        </h1>
-                        <p style={{ marginLeft: "12px" }}> - 5 jun.</p>
-                        <img src={deleteIcon} alt="" className="deleteStyle" />
+                        <div className="infNameTime">
+                            <h1 
+                                className="userNameStyle"
+                                style={{ backgroundColor: `${context.pickColor.hex}`}}>
+                                {context.user.displayName}
+                            </h1>
+                            <p style={{ marginLeft: "12px" }}> - 5 jun.</p>
+                        </div>
+                        <div className="deleteClass">
+                            <img src={deleteIcon} alt="" className="deleteStyle" />
+                        </div>
                    </div>
                    <p className="showTweetStyle">{tweetMensaje}</p>
                     <LikeSection likes={likes}/>

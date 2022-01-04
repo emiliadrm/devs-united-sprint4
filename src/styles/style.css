@@ -104,6 +104,11 @@ body {
     border-radius: 5px 0px 0px 5px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.gButton:hover {
+    background-color: #5895f8;
 }
 
 .gLogo {

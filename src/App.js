@@ -7,7 +7,7 @@ import './styles/desktop.css';
 import './styles/mobile.css';
 
 /*CONTEXTO Y FIREBASE CONECTION*/
-import { firestore, auth, loginWithGoogle, logout} from "./firebase";
+import { firestore, auth } from "./firebase";
 import { AppContext } from "./context/AppProvider"
 
 /*IMPORTACION DE PAGINAS PARA LAS RUTAS*/
@@ -49,9 +49,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        {context.user ? (<Route path="/" element={<Feed handleButton={handleButton}/>}/>) 
+        : 
+        (<Route path="/" element={<LoginPage />} />)}
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/feed" element={<Feed handleButton={handleButton}/>}/>
         <Route path="/config" element={<Config />} />
       </Routes>
     </div>
