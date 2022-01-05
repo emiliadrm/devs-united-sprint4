@@ -27,7 +27,7 @@ function TextField() {
                     placeholder="What's happening?"
                     name="tweetText" 
                     value={context.tweetM.tweetMessage}
-                    id="" 
+                    id={context.id} 
                     cols="30" 
                     rows="10" 
                     maxLength="200"
