@@ -15,13 +15,13 @@ export default function Feed() {
     return(
         <main>
             <header className="navBar">
-                <img src={ProfileDefault} width="33px"alt="" />
+                {context.user.photoURL ? (<img src={context.user.photoURL} width="33px"alt="" />) : (<img src={ProfileDefault} width="33px"alt="" />)}
                 <img src={Logito} alt="" />
                 <img src={Titulo} alt="" />
                 <LogoutButton/>
             </header>
             <section className="textSection">
-                <img src={ProfileDefault} alt="" className="profileStyleFeed"/>
+                <img src={context.user.photoURL} alt="" className="profileStyleFeed"/>
                 <InputComponent />
             </section>
             <section className="tweetSection">
