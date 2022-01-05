@@ -205,9 +205,12 @@ deleteStyle:hover{
   }
 
   .color.selected {
-      border: 5px solid #FFFFFF;
+    border: 5px solid #FFFFFF;
   }
 
   .selectColorClass {
-      align-items: center;
+    justify-content: center;
+    align-items: center;
   }
+
+  

@@ -18,38 +18,58 @@ import Config from "./pages/ConfigPage"
 
 
 function App() {
+
   const context = useContext(AppContext)
  
-   useEffect(() => {
-     const unsubscribe = firestore.collection("tweets")
-     .onSnapshot((snapshot) => {
-       const tweets = snapshot.docs.map((doc) => {
-         return {
-           user: doc.data().user,
-           color: doc.data().color,
-           likes: doc.data().likes,
-           tweetMessage: doc.data().tweetMessage,
-           id: doc.id
-         };
-       });
-      auth.onAuthStateChanged((user) => {
-         context.setUser(user);
-         console.log(user); });
-       context.setMessages(tweets);
 
-     });
-     return unsubscribe;
-   }, []);
+  // OBTENER INFORMACION DE LOS TWEETS INDIVIDUALMENTE
+  useEffect(() => {
+    const unsubscribe = firestore.collection("tweets").onSnapshot((snapshot) => {
+      const tweets = snapshot.docs.map((doc) => {
+        return {
+          username: doc.data().username,
+          uid: doc.data().uid,
+          mail: doc.data().mail,
+          color: doc.data().color,
+          likes: doc.data().likes,
+          tweetMessage: doc.data().tweetMessage,
+          id: doc.id
+        };
+      });
+
+      context.setMessages(tweets);
+    });
+    
+    auth.onAuthStateChanged((user) => {
+      context.setUser(user);
+      console.log(user);
+    });
+    
+    return unsubscribe;
+  }, );
  
-    const handleButton = (e) => {
-     e.preventDefault();
-     firestore.collection("tweets").add(context.messages);
-   }
+  
+
+// OBTENER INFORMACION DEL PERFIL LOGEADO
+/*   useEffect(() => {
+    const unsubscribe = firestore.collection("profile")
+    .onSnapshot((snapshot) => {
+      const profile = snapshot.docs.map((doc) => {
+        return {
+          uid: doc.data().uid,
+          color: doc.data().color,
+          username: doc.data().username,
+        };
+      });
+        context.setProfile(profile);
+    });
+    return unsubscribe;
+  },);*/
 
   return (
     <div className="App">
       <Routes>
-        {context.user ? (<Route path="/" element={<Feed handleButton={handleButton}/>}/>) 
+        {context.user ? (<Route path="/" element={<Feed/>}/>) 
         : 
         (<Route path="/" element={<LoginPage />} />)}
         <Route path="/perfil" element={<Perfil />} />

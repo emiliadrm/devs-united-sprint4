@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ProfileDefault from "../resources/profilePicDefault.svg";
+// import ProfileDefault from "../resources/profilePicDefault.svg";
 import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
 import { AppContext } from "../context/AppProvider"
