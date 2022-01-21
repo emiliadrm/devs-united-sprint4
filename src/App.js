@@ -36,17 +36,17 @@ function App() {
           id: doc.id
         };
       });
-
-      context.setMessages(tweets);
+      // console.log(tweets)
+     // context.setMessages(tweets);
     });
     
     auth.onAuthStateChanged((user) => {
-      context.setUser(user);
-      console.log(user);
+      // context.setUser(user);
+     // console.log(user);
     });
     
     return unsubscribe;
-  }, );
+  }, []);
  
   
 

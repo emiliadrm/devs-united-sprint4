@@ -1,9 +1,18 @@
-import React from "react";
+import React  from "react";
+// import { AppContext } from "../context/AppProvider"
+
+// import TweetField from "../components/TweetComponent"
+import { LogoutButton } from "../components/GoogleSignButton"
 
 export default function Perfil() {
     return(
-        <div>
-            Esta es un prueba de Perfil
-        </div>
+        <main>
+            <header className="navBar">
+                <button>v</button>
+                <h2>Username</h2>
+                <LogoutButton/>
+            </header>
+            <div>Testing</div>
+        </main>
     )
 }
