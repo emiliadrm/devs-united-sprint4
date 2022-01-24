@@ -27,9 +27,13 @@ export default function Feed() {
             <section className="tweetSection">
                 {context.messages.map((tweet) => 
                     <TweetField 
+                        uid={context.user.uid}
                         tweetMensaje={tweet.tweetMessage}
                         id={tweet.id}
                         likes={tweet.likes}
+                        username={context.profile.username}
+                        color={context.profile.color}
+                        photo={context.user.photoURL}
                     />)} 
             </section>
         </main>

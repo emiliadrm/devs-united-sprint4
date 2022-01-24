@@ -1,3 +1,4 @@
+import userEvent from "@testing-library/user-event";
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppProvider"
 import { firestore /*auth, loginWithGoogle, logout */} from "../firebase";
@@ -17,7 +18,12 @@ function TextField() {
             .collection("tweets")
             .add(context.tweetM)
             .then(() => {
-                context.setTweetM({ tweetMessage:"" });
+                context.setTweetM({ 
+                    tweetMessage:"",
+                    uid: context.user.uid,
+                    username: context.profile.username,
+                    color: context.pickColor.hex
+                });
             }); 
       };
 

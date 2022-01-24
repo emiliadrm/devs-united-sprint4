@@ -6,7 +6,7 @@ import { AppContext } from "../context/AppProvider"
 // import { firestore auth, loginWithGoogle, logout } from "../firebase";
 
 
-function TweetField({ tweetMensaje, id, likes }) {
+function TweetField({ tweetMensaje, id, likes, photo, username, color }) {
 
     const context = useContext(AppContext);
 
@@ -18,15 +18,15 @@ function TweetField({ tweetMensaje, id, likes }) {
 
     return (
             <div className="tweetFieldStyle" key={id}>
-                <img src={context.user.photoURL} alt="" className="profileStyleFeed"/>
+                <img src={photo} alt="" className="profileStyleFeed"/>
                 <div>
                    <div className="infTweetStyle">
                         <div className="infNameTime">
                             <Link to={`/user/${context.profile.username}`}>
                                 <h1 
                                     className="userNameStyle"
-                                    style={{ backgroundColor: `${context.profile.color}`, color: "white"}}>
-                                    {context.profile.username}
+                                    style={{ backgroundColor: `${color}`, color: "white"}}>
+                                    {username}
                                 </h1>
                             </Link>
                             
