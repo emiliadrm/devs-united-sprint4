@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 // import ProfileDefault from "../resources/profilePicDefault.svg";
 import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
@@ -22,11 +23,14 @@ function TweetField({ tweetMensaje, id, likes }) {
                 <div>
                    <div className="infTweetStyle">
                         <div className="infNameTime">
-                            <h1 
-                                className="userNameStyle"
-                                style={{ backgroundColor: `${context.pickColor.hex}`}}>
-                                {context.user.displayName}
-                            </h1>
+                            <Link to={`/user/${context.profile.username}`}>
+                                <h1 
+                                    className="userNameStyle"
+                                    style={{ backgroundColor: `${context.pickColor.hex}`}}>
+                                    {context.user.displayName}
+                                </h1>
+                            </Link>
+                            
                             <p style={{ marginLeft: "12px" }}> - 5 jun.</p>
                         </div>
                         <div className="deleteClass">

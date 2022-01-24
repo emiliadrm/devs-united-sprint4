@@ -1,11 +1,18 @@
 import React from "react";
 import gLogo from "../resources/googlelogo.svg"
 import iconLogout from "../resources/logout.svg"
+// import { useHistory } from "react-router-dom"
 import { loginWithGoogle, logout} from "../firebase";
 
 function GoogleButton() {
+   // const history = useHistory();
+
+    const buttonHome = () => {
+       // history.push("/home");
+        loginWithGoogle();
+    }
     return(
-        <button className="gButton" onClick={loginWithGoogle}>
+        <button className="gButton" onClick={buttonHome}>
             <div className="gLogo"><img className="gImg" src={gLogo} alt="" /></div>
             <p className="gText">Sign in with Google</p>
         </button>
