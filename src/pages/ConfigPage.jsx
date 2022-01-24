@@ -24,7 +24,7 @@ export default function LoginPage() {
             .collection("profile")
             .add(profile)
             .then(() => {
-                setProfile({ username: profile.username, uid: user.uid, mail: user.email, color: pickColor.color});
+                setProfile({ username: profile.username, uid: user.uid, mail: user.email, color: pickColor.hex});
             });
             navigate("/home")
       };
