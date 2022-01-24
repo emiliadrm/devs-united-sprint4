@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-// import ProfileDefault from "../resources/profilePicDefault.svg";
 import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
 import { AppContext } from "../context/AppProvider"
@@ -10,12 +9,12 @@ import { AppContext } from "../context/AppProvider"
 function TweetField({ tweetMensaje, id, likes }) {
 
     const context = useContext(AppContext);
-    
- /*   const deleteTweet = (id) => {
-        firestore
-            .doc("tweets")
-            .delete(`tweets/${id}`)
-      };*/
+
+    //const deleteTweet = (id) => {
+    //   firestore
+    //   .doc("tweets")
+    //   .delete(`tweets/${id}`)
+    // };
 
     return (
             <div className="tweetFieldStyle" key={id}>
@@ -26,8 +25,8 @@ function TweetField({ tweetMensaje, id, likes }) {
                             <Link to={`/user/${context.profile.username}`}>
                                 <h1 
                                     className="userNameStyle"
-                                    style={{ backgroundColor: `${context.pickColor.hex}`}}>
-                                    {context.user.displayName}
+                                    style={{ backgroundColor: `${context.profile.color}`, color: "white"}}>
+                                    {context.profile.username}
                                 </h1>
                             </Link>
                             

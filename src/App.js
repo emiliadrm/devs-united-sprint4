@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, /*useState*/ } from "react"
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
+import React, { useContext, useEffect } from "react"
+import { Route, Routes } from "react-router-dom"
 
 /*ESTILOS*/
 import './styles/style.css';
@@ -59,6 +59,7 @@ function App() {
     return unsubscribe;
   }, []);
  
+  
   // OBTENER INFORMACION DEL PERFIL LOGEADO
   useEffect(() => {
 
@@ -103,69 +104,3 @@ function App() {
 
 
 export default App;
-
-
-/*
-<Route path="/" element={props => {
-  if (context.user == true && context.profile.color == true && context.profile.username == true) {
-    return <Navigate replace to={{pathname: "/home", state {from: props.Feed }}} />
-  } else if (context.user == true && context.profile.color == undefined && context.profile.username == undefined) {
-    return <Navigate replace to={{pathname: "/config", state {from: props.Config }}} />
-  }
-  return <LoginPage />
-}} />
-
-
-
-*/
-
-
-
-
-/* 
-function Prueba () {
-  if (context.user == true && context.profile.color == undefined && context.profile.username == undefined) {
-    return (<Route path="/" element={<Config />} />)
-  } else if (context.user == true && context.profile.color == true && context.profile.username == true) {
-    return (<Route path="/" element={<Feed/>}/>)
-  } else if (context.user == undefined && context.user == false) {
-    return (<Route path="/" element={<LoginPage />} />)
-  }
-} */
-
-
-
-/*
-  return (
-    <div className="App">
-      <Routes>
-        {context.user ? (<Route path="/" element={<Feed/>}/>) 
-        : 
-        (<Route path="/" element={<LoginPage />} />)}
-        <Route path="/perfil" element={<Perfil />} />
-        <Route path="/config" element={<Config />} />
-      </Routes>
-    </div>
-  );
-}
-*/
-
-/*
-return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={() => {
-          if (context.user === true && context.profile.color === true && context.profile.username === true) {
-            return <Navigate replace to={{pathname:"/home", from: <Feed/>}} />
-          } else if (context.user === true && context.profile.color === undefined && context.profile.username === undefined) {
-            return <Navigate replace to={{pathname:"/config", from: <Config/>} } />
-          }
-          return <LoginPage />
-      }}/>
-        <Route path="/user/:username" element={<Perfil/>} />
-        <Route path="*" element={(<div>Not Found Page</div>)} />
-      </Routes>
-    </div>
-  );
-}
-*/

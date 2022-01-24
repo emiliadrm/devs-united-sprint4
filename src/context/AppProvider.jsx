@@ -4,10 +4,10 @@ export const AppContext = React.createContext();
 
 export default function AppProvider(props) {
   const [messages, setMessages] = useState([]);
-  const [tweetM, setTweetM] = useState({ tweetMessage: "" });
-  const [pickColor, setPickColor] = useState(colorList[0]);
+  const [tweetM, setTweetM] = useState({ tweetMessage: "" , uid: "", color: "", username: ""});
+  const [pickColor, setPickColor] = useState({ color: ""});
   const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState();
+  const [profile, setProfile] = useState({ username: "", uid: "", mail: "", color: ""});
 
     return (
       <AppContext.Provider value={{ profile, setProfile, messages, setMessages, tweetM, setTweetM, pickColor, setPickColor, user, setUser}}>

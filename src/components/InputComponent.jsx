@@ -8,7 +8,8 @@ function TextField() {
 
     const handleChange = (e) => {
         e.preventDefault();
-        context.setTweetM({ tweetMessage: e.target.value }); }; 
+        context.setTweetM({ tweetMessage: e.target.value }); 
+    }; 
     
     const sendTweetM = (e) => {
         e.preventDefault();
