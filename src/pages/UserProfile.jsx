@@ -3,7 +3,7 @@ import React  from "react";
 
 // import TweetField from "../components/TweetComponent"
 import { useParams } from "react-router-dom";
-import { LogoutButton } from "../components/GoogleSignButton"
+import { LogoutButton } from "../components/LogoutButton"
 
 export default function Perfil() {
 

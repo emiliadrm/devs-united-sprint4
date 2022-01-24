@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, /*useState*/ } from "react"
-import { Navigate, Route, Routes, useHistory } from "react-router-dom"
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
 
 /*ESTILOS*/
 import './styles/style.css';
@@ -91,14 +91,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={() => {
-          if (context.user === true && context.profile.color === true && context.profile.username === true) {
-            return <Navigate replace to={{pathname:"/home", from: <Feed/>}} />
-          } else if (context.user === true && context.profile.color === undefined && context.profile.username === undefined) {
-            return <Navigate replace to={{pathname:"/config", from: <Config/>} } />
-          }
-          return <LoginPage />
-      }}/>
+        <Route path="/" element={<LoginPage/>}/>
+        <Route path="/home" element={<Feed/>}/>
+        <Route path="/settings" element={<Config />} />
         <Route path="/user/:username" element={<Perfil/>} />
         <Route path="*" element={(<div>Not Found Page</div>)} />
       </Routes>
@@ -149,6 +144,26 @@ function Prueba () {
         (<Route path="/" element={<LoginPage />} />)}
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/config" element={<Config />} />
+      </Routes>
+    </div>
+  );
+}
+*/
+
+/*
+return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={() => {
+          if (context.user === true && context.profile.color === true && context.profile.username === true) {
+            return <Navigate replace to={{pathname:"/home", from: <Feed/>}} />
+          } else if (context.user === true && context.profile.color === undefined && context.profile.username === undefined) {
+            return <Navigate replace to={{pathname:"/config", from: <Config/>} } />
+          }
+          return <LoginPage />
+      }}/>
+        <Route path="/user/:username" element={<Perfil/>} />
+        <Route path="*" element={(<div>Not Found Page</div>)} />
       </Routes>
     </div>
   );

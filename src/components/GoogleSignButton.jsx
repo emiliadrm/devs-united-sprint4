@@ -1,29 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import gLogo from "../resources/googlelogo.svg"
-import iconLogout from "../resources/logout.svg"
-// import { useHistory } from "react-router-dom"
-import { loginWithGoogle, logout} from "../firebase";
+import { useNavigate } from "react-router-dom"
+import { loginWithGoogle} from "../firebase";
+import { AppContext } from "../context/AppProvider";
 
 function GoogleButton() {
-   // const history = useHistory();
+
+    const { profile } = useContext(AppContext);
+    const navigate = useNavigate();
 
     const buttonHome = () => {
-       // history.push("/home");
+        
         loginWithGoogle();
+
+        if (profile.color === undefined && profile.username === undefined) {
+            navigate("/settings")
+        } else {
+            navigate("/home")
+        }
     }
+
     return(
         <button className="gButton" onClick={buttonHome}>
             <div className="gLogo"><img className="gImg" src={gLogo} alt="" /></div>
             <p className="gText">Sign in with Google</p>
-        </button>
-    )
-}
-
-export function LogoutButton() {
-    return(
-        <button className="gLogout" onClick={logout}>
-            <p className="nameLogout">LOGOUT</p>
-            <img src={iconLogout} alt="" />
         </button>
     )
 }

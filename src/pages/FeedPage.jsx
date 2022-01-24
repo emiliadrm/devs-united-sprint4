@@ -7,7 +7,7 @@ import InputComponent from "../components/InputComponent"
 import Titulo from "../resources/title.svg"
 import Logito from "../resources/logo-small.svg"
 import ProfileDefault from "../resources/profilePicDefault.svg"
-import { LogoutButton } from "../components/GoogleSignButton"
+import { LogoutButton } from "../components/LogoutButton"
 
 export default function Feed() {
     const context = useContext(AppContext);
