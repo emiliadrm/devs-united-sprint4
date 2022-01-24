@@ -93,14 +93,16 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
-        <Route path="/home" element={<Feed/>}/>
-        <Route path="/settings" element={<Config />} />
-        <Route path="/user/:username" element={<Perfil/>} />
+        {context.user ? (<>
+          <Route path="/home" element={<Feed/>}/>
+          <Route path="/settings" element={<Config />} />
+          <Route path="/user/:username" element={<Perfil/>} />   
+        </>) : <Route path="/" element={<LoginPage/>}/>} 
         <Route path="*" element={(<div>Not Found Page</div>)} />
       </Routes>
     </div>
   );
-}
+} 
 
 
 export default App;
