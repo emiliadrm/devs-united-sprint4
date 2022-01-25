@@ -1,4 +1,4 @@
-import userEvent from "@testing-library/user-event";
+
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppProvider"
 import { firestore /*auth, loginWithGoogle, logout */} from "../firebase";
@@ -22,7 +22,9 @@ function TextField() {
                     tweetMessage:"",
                     uid: context.user.uid,
                     username: context.profile.username,
-                    color: context.pickColor.hex
+                    color: context.profile.color,
+                    photoURL: context.user.photoURL,
+                    email: context.user.email
                 });
             }); 
       };

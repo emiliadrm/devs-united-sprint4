@@ -11,7 +11,7 @@ export default function LoginPage() {
 
     const navigate = useNavigate();
 
-    const { setProfile, profile, setPickColor, pickColor, user } = useContext(AppContext);
+    const { setProfile, profile, setPickColor, pickColor } = useContext(AppContext);
 
     const handleInfo = (e) => {
         e.preventDefault();
@@ -24,7 +24,10 @@ export default function LoginPage() {
             .collection("profile")
             .add(profile)
             .then(() => {
-                setProfile({ username: profile.username, uid: user.uid, mail: user.email, color: pickColor.hex});
+                setProfile({ 
+                    username: profile.username,
+                    color: pickColor.hex
+                });
             });
             navigate("/home")
       };
@@ -68,3 +71,11 @@ export default function LoginPage() {
     )
 };
 
+/*
+ firestore
+            .collection("profile")
+            .add(profile)
+            .then(() => {
+                setProfile({ username: profile.username, uid: user.uid, mail: user.email, color: pickColor.hex});
+            });
+*/

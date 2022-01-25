@@ -39,13 +39,14 @@ function App() {
       });
       const tweets = result.map((doc) => {
         return {
-          username: doc.username,
+          id: doc.id,
           uid: doc.uid,
-          mail: doc.mail,
+          username: doc.username,
+          photoURL: doc.photoURL,
+          email: doc.email,
           color: doc.color,
           likes: doc.likes,
           tweetMessage: doc.tweetMessage,
-          id: doc.id
         };
       })
       console.log('Se debe ejecutar una sola vez cada vez que actualiza/crea un tweet', result);
@@ -77,8 +78,10 @@ function App() {
         const profile = result2.map((doc) => {
           return {
             uid: doc.uid,
+            id: doc.id,
+            photoURL: doc.photoURL,
+            email: doc.email,
             username: doc.username,
-            mail: doc.mail,
             color: doc.color,
             likes: doc.likes
           };
