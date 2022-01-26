@@ -1,24 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import gLogo from "../resources/googlelogo.svg"
 import { useNavigate } from "react-router-dom"
 import { loginWithGoogle} from "../firebase";
-import { AppContext } from "../context/AppProvider";
 
 function GoogleButton() {
 
-    const { profile } = useContext(AppContext);
     const navigate = useNavigate();
 
     const buttonHome = () => {
-        
-        loginWithGoogle();
+        loginWithGoogle.then(credentials => {
 
-        if (profile.color === undefined && profile.username === undefined) {
-            navigate("/settings")
-        } else {
-            navigate("/home")
-        }
-    }
+            console.log('LOGIN SUCCESS', credentials);
+            if (credentials.additionalUserInfo.isNewUser) {
+                navigate("/settings")
+            } else {
+                navigate("/home")
+            }
+        });
+    };
 
     return(
         <button className="gButton" onClick={buttonHome}>

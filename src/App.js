@@ -55,7 +55,6 @@ function App() {
     });
     auth.onAuthStateChanged((user) => {
       context.setUser(user);
-      console.log(user);
     });
     return unsubscribe;
   }, []);
