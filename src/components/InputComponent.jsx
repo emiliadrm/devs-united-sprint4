@@ -1,31 +1,32 @@
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider"
-import { firestore /*auth, loginWithGoogle, logout */} from "../firebase";
+import { firestore } from "../firebase";
 
 function TextField() {
 
-    const context = useContext(AppContext);
+    const { profile } = useContext(AppContext);
+    const [tweetM, setTweetM] = useState({ 
+        tweetMessage: "", 
+        id: "",
+        color: "",
+        username: "",
+        email:"",
+        photoURL: ""
+    });
 
     const handleChange = (e) => {
         e.preventDefault();
-        context.setTweetM({ tweetMessage: e.target.value }); 
+        setTweetM({ tweetMessage: e.target.value }); 
     }; 
     
     const sendTweetM = (e) => {
         e.preventDefault();
         firestore
             .collection("tweets")
-            .add(context.tweetM)
+            .add(tweetM)
             .then(() => {
-                context.setTweetM({ 
-                    tweetMessage:"",
-                    uid: context.user.uid,
-                    username: context.profile.username,
-                    color: context.profile.color,
-                    photoURL: context.user.photoURL,
-                    email: context.user.email
-                });
+                setTweetM({ tweetMessage:"" });
             }); 
       };
 
@@ -35,7 +36,7 @@ function TextField() {
                     className="inputFieldStyle"
                     placeholder="What's happening?"
                     name="tweetText" 
-                    value={context.tweetM.tweetMessage}
+                    value={tweetM.tweetMessage}
                     id="" 
                     cols="30" 
                     rows="10" 

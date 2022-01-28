@@ -8,8 +8,8 @@ function GoogleButton() {
     const navigate = useNavigate();
 
     const buttonHome = () => {
-        loginWithGoogle.then(credentials => {
 
+        loginWithGoogle().then(credentials => {
             console.log('LOGIN SUCCESS', credentials);
             if (credentials.additionalUserInfo.isNewUser) {
                 navigate("/settings")
