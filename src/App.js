@@ -12,7 +12,7 @@ import { AppContext } from "./context/AppProvider"
 
 /*IMPORTACION DE PAGINAS PARA LAS RUTAS*/
 import LoginPage from "./pages/LoginPage";
-import Perfil from "./pages/UserProfile"
+import UserProfile from "./pages/UserProfile"
 import FeedPage from "./pages/FeedPage"
 import ConfigPage from "./pages/ConfigPage"
 
@@ -96,9 +96,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
         {context.user ? (<>
+          <Route path="/" element={<FeedPage/>}/>
           <Route path="/home" element={<FeedPage/>}/>
           <Route path="/settings" element={<ConfigPage />} />
-          <Route path="/user/:username" element={<Perfil/>} />   
+          <Route path="/user/:usernameProfile" element={<UserProfile/>} />   
         </>) : <Route path="/" element={<LoginPage/>}/>} 
         <Route path="*" element={(<div>Not Found Page</div>)} />
       </Routes>

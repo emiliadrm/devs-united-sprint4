@@ -35,21 +35,26 @@ export default function ConfigPage() {
     
     const sendInfo = (e) => {
         e.preventDefault();
-        //debo verificar que no exista el mismo username? 
+
+       /* if (newUsername === profiles.username)
+        {
+            return false;
+        } */
+        
         firestore
-            .collection("profile")
-            .doc(user.uid)
-            .set({
-                username: newUsername,
-                color: pickColor.hex,
-                photoURL: user.photoURL,
-                id: user.uid,
-                email: user.email,
-                name: user.displayName
+        .collection("profile")
+        .doc(user.uid)
+        .set({
+            username: newUsername,
+            color: pickColor.hex,
+            photoURL: user.photoURL,
+            id: user.uid,
+            email: user.email,
+            name: user.displayName
             })
-            .then(() => {
-                navigate("/home")
-            });
+        .then(() => {
+            navigate("/home")
+        });
            
       };
 

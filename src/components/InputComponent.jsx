@@ -5,7 +5,7 @@ import { firestore } from "../firebase";
 
 import { getProfileForUID } from "../helpers";
 
-function TextField() {
+function InputComponent() {
 
     const { profiles, user } = useContext(AppContext);
 
@@ -55,4 +55,4 @@ function TextField() {
     )
 }
 
-export default TextField;
+export default InputComponent;

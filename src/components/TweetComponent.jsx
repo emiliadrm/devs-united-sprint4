@@ -4,17 +4,17 @@ import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
 import { AppContext } from "../context/AppProvider"
 import { firestore } from "../firebase";
-import { getProfileForUID } from "../helpers";
+// import { getProfileForUID } from "../helpers";
 
-function TweetField({ tweetMensaje, id, likes, photo, username, color, uid }) {
+function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid }) {
 
-    const context = useContext(AppContext);
+    const { user } = useContext(AppContext);
 
     const deleteTweet = (id) => {
        firestore.collection("tweets").doc(id).delete();
     };
     // {}
-    const userProfile = getProfileForUID(context.profiles, uid);
+    // const userProfile = getProfileForUID(context.profiles, user.uid);
 
     return (
             <div className="tweetFieldStyle" key={id}>
@@ -22,17 +22,17 @@ function TweetField({ tweetMensaje, id, likes, photo, username, color, uid }) {
                 <div>
                    <div className="infTweetStyle">
                         <div className="infNameTime">
-                            <Link to={`/user/${userProfile.username}`}>
+                            <Link to={`/user/${username}`}>
                                 <h1 
                                     className="userNameStyle"
-                                    style={{ backgroundColor: `${userProfile.color}`, color: "white"}}>
-                                    {userProfile.username}
+                                    style={{ backgroundColor: `${color}`, color: "white"}}>
+                                    {username}
                                 </h1>
                             </Link>
                             
                             <p style={{ marginLeft: "12px" }}> - 5 jun.</p>
                         </div>
-                        {uid === context.user.uid ? (
+                        {uid === user.uid ? (
                             <button type="button" className="deleteClass" onClick={() => deleteTweet(id)}>
                                 <img src={deleteIcon} alt="" className="deleteStyle" />
                             </button>
@@ -66,4 +66,4 @@ function LikeSection ({ likes }) {
     )
 }
 
-export default TweetField;
+export default TweetComponent;

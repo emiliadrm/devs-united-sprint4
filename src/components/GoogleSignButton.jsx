@@ -18,7 +18,7 @@ function GoogleButton() {
             }
         });
     };
-
+    
     return(
         <button className="gButton" onClick={buttonHome}>
             <div className="gLogo"><img className="gImg" src={gLogo} alt="" /></div>
