@@ -25,7 +25,7 @@ function TweetField({ tweetMensaje, id, likes, photo, username, color, uid }) {
                             <Link to={`/user/${userProfile.username}`}>
                                 <h1 
                                     className="userNameStyle"
-                                    style={{ backgroundColor: `${color}`, color: "white"}}>
+                                    style={{ backgroundColor: `${userProfile.color}`, color: "white"}}>
                                     {userProfile.username}
                                 </h1>
                             </Link>

@@ -64,8 +64,8 @@ export default function ConfigPage() {
                 <input
                     type="text"
                     placeholder="Type your username"
-                    className="inputNickname" minlength="5"
-                    maxlength="12"
+                    className="inputNickname" minLength="5"
+                    maxLength="12"
                     id={loggedUserProfile.id}
                     value={newUsername}
                     onChange={handleInfo}

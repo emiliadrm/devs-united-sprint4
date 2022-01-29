@@ -42,6 +42,7 @@ function TextField() {
                     id="" 
                     cols="30" 
                     rows="10" 
+                    minLength="1"
                     maxLength="200"
                     onChange={handleChange}
                     ></textarea>
