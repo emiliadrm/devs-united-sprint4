@@ -3,31 +3,33 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider"
 import { firestore } from "../firebase";
 
+import { getProfileForUID } from "../helpers";
+
 function TextField() {
 
-    const { profile } = useContext(AppContext);
-    const [tweetM, setTweetM] = useState({ 
-        tweetMessage: "", 
-        id: "",
-        color: "",
-        username: "",
-        email:"",
-        photoURL: ""
-    });
+    const { profiles, user } = useContext(AppContext);
+
+    const loggedUserProfile = getProfileForUID(profiles, user?.uid);
+
+    const [tweetM, setTweetM] = useState('');
 
     const handleChange = (e) => {
         e.preventDefault();
-        setTweetM({ tweetMessage: e.target.value }); 
+        setTweetM(e.target.value); 
     }; 
     
     const sendTweetM = (e) => {
         e.preventDefault();
         firestore
             .collection("tweets")
-            .add(tweetM)
-            .then(() => {
-                setTweetM({ tweetMessage:"" });
-            }); 
+            .add({
+                color: loggedUserProfile.color,
+                email: loggedUserProfile.email,
+                photoURL: loggedUserProfile.photoURL,
+                tweetMessage: tweetM,
+                username: loggedUserProfile.username,
+                uid: user.uid,
+            });
       };
 
     return (
@@ -36,7 +38,7 @@ function TextField() {
                     className="inputFieldStyle"
                     placeholder="What's happening?"
                     name="tweetText" 
-                    value={tweetM.tweetMessage}
+                    value={tweetM}
                     id="" 
                     cols="30" 
                     rows="10" 

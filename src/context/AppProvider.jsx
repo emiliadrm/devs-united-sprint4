@@ -5,11 +5,11 @@ export const AppContext = React.createContext();
 export default function AppProvider(props) {
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState({ username: "", color: "", uid: "", photoURL: "", email:""});
+  const [profiles, setProfiles] = useState([]);
 
 
     return (
-      <AppContext.Provider value={{ profile, setProfile, messages, setMessages, user, setUser}}>
+      <AppContext.Provider value={{ profiles, setProfiles, messages, setMessages, user, setUser}}>
         {props.children}
       </AppContext.Provider>
     );

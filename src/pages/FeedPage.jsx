@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/AppProvider"
 
 
-import TweetField from "../components/TweetComponent"
+import TweetComponent from "../components/TweetComponent"
 import InputComponent from "../components/InputComponent"
 import Titulo from "../resources/title.svg"
 import Logito from "../resources/logo-small.svg"
 import { LogoutButton } from "../components/LogoutButton"
 
-export default function Feed() {
+export default function FeedPage() {
 
     const context = useContext(AppContext);
 
@@ -25,8 +25,9 @@ export default function Feed() {
                 <InputComponent />
             </section>
             <section className="tweetSection">
-                {context.messages.map((tweet) => 
-                    <TweetField 
+                {context.messages.map((tweet, index) => 
+                    <TweetComponent 
+                        key={index}
                         uid={tweet.uid}
                         tweetMensaje={tweet.tweetMessage}
                         id={tweet.id}

@@ -5,6 +5,8 @@ import { firestore } from "../firebase";
 import { AppContext } from "../context/AppProvider";
 import "../styles/style.css";
 
+import { getProfileForUID } from "../helpers";
+
 const colorList = [
     { name: "rojo", hex: "#F50D5A" },
     { name: "naranja", hex: "#FF865C" },
@@ -14,13 +16,16 @@ const colorList = [
     { name: "purpura", hex: "#800FFF" }
 ];
 
-export default function LoginPage() {
+export default function ConfigPage() {
 
     const navigate = useNavigate();
+    const { user, profiles } = useContext(AppContext);
 
-    const { user, profile } = useContext(AppContext);
-    const [ newUsername, setNewUsername ] = useState(profile.username);
-    const color = profile.color ? profile.color : colorList[0];
+     // si no esta logueado {}, si esta logueado trae info del usuario
+    const loggedUserProfile = getProfileForUID(profiles, user?.uid)
+
+    const [ newUsername, setNewUsername ] = useState(loggedUserProfile.username ?? '');
+    const color = loggedUserProfile.color ? loggedUserProfile.color : colorList[0];
     const [ pickColor, setPickColor ] = useState(color);
 
     const handleInfo = (e) => {
@@ -61,7 +66,7 @@ export default function LoginPage() {
                     placeholder="Type your username"
                     className="inputNickname" minlength="5"
                     maxlength="12"
-                    id={profile.id}
+                    id={loggedUserProfile.id}
                     value={newUsername}
                     onChange={handleInfo}
                 />

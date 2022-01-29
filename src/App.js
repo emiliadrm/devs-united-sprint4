@@ -13,8 +13,8 @@ import { AppContext } from "./context/AppProvider"
 /*IMPORTACION DE PAGINAS PARA LAS RUTAS*/
 import LoginPage from "./pages/LoginPage";
 import Perfil from "./pages/UserProfile"
-import Feed from "./pages/FeedPage"
-import Config from "./pages/ConfigPage"
+import FeedPage from "./pages/FeedPage"
+import ConfigPage from "./pages/ConfigPage"
 
 
 function App() {
@@ -54,10 +54,10 @@ function App() {
       context.setMessages(tweets);
     });
     auth.onAuthStateChanged((user) => {
-      context.setUser(user);
+      context.setUser(user); // user.uid
     });
     return unsubscribe;
-  }, []);
+  }, []); //eslint-disable-line
  
   
   // OBTENER INFORMACION DEL PERFIL LOGEADO
@@ -69,14 +69,14 @@ function App() {
       const result2 = [];
       snapshot.forEach((d) => {
         const data = {
-          uid: d.uid,
+          uid: d.id,
           ...d.data(),
          }
          result2.push(data);
       });
-        const profile = result2.map((doc) => {
+        const profilesFromDB = result2.map((doc) => {
           return {
-            uid: doc.uid,
+            uid: doc.id,
             id: doc.id,
             photoURL: doc.photoURL,
             email: doc.email,
@@ -85,19 +85,19 @@ function App() {
             likes: doc.likes
           };
         });
-        context.setProfile(profile);
-        console.log('EXECUTE', profile);
+        context.setProfiles(profilesFromDB);
+        console.log('EXECUTE', profilesFromDB);
     });
     return unsubscribe;
-  }, []);
+  }, []); //eslint-disable-line 
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
         {context.user ? (<>
-          <Route path="/home" element={<Feed/>}/>
-          <Route path="/settings" element={<Config />} />
+          <Route path="/home" element={<FeedPage/>}/>
+          <Route path="/settings" element={<ConfigPage />} />
           <Route path="/user/:username" element={<Perfil/>} />   
         </>) : <Route path="/" element={<LoginPage/>}/>} 
         <Route path="*" element={(<div>Not Found Page</div>)} />
