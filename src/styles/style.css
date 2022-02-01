@@ -215,6 +215,7 @@ deleteStyle:hover{
 
   .window-notice .content {
     background: #fff;
+    color: #2E132C;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(33, 41, 52, .75);
     box-sizing: content-box;

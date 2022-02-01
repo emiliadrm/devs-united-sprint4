@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
@@ -6,7 +6,17 @@ import { AppContext } from "../context/AppProvider"
 import { firestore } from "../firebase";
 // import { getProfileForUID } from "../helpers";
 
-function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, linkProfile }) {
+function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid }) {
+
+    const [ modalView, setModalView] = useState(false);
+
+    const handleModalView = () => {
+        setModalView(true);
+    }
+
+    const handleCloseModal = () => {
+        setModalView(false);
+    }
 
     const { user } = useContext(AppContext);
 
@@ -31,7 +41,7 @@ function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, 
                             <button 
                                 type="button" 
                                 className="deleteClass"
-                                onClick={() => EmergentWindow(id)}>
+                                onClick={handleModalView}>
                                 <img src={deleteIcon} alt="" className="deleteStyle" />
                             </button>
                         ) : null}
@@ -40,6 +50,7 @@ function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, 
                     <LikeSection likes={likes}/>
                 </div>
                 <div className="lineTweet"></div>
+                {modalView ? <EmergentWindow id={id} closeModal={handleCloseModal}/> : null}
             </div>
     )
 }
@@ -65,18 +76,19 @@ function LikeSection ({ likes }) {
 }
 
 
-function EmergentWindow(id) {
+function EmergentWindow({id, closeModal}) {
 
     const deleteTweet = (id) => {
         firestore.collection("tweets").doc(id).delete();
+        closeModal();
      };
 
     return (
         <div class="window-notice" id="window-notice">
             <div class="content">
                 <div class="content-text">Usted esta seguro de lo que esta haciendo?</div>
-                <div class="content-buttons" onClick={CloseEvent}>No estoy seguro</div>
-                <div class="content-buttons" onClick={() => deleteTweet(id)}>Si, estoy seguro!</div>
+                <button type="button" class="content-buttons" onClick={closeModal}>No estoy seguro</button>
+                <button type="button" class="content-buttons" onClick={() => deleteTweet(id)}>Si, estoy seguro!</button>
             </div>
         </div>
     )
