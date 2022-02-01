@@ -11,6 +11,11 @@ export function getIDforUsername(profiles = [], paramUsername) {
   if (paramUsername == null || paramUsername === ''){
     return {};
   }
-  return profiles.find((perfil) => perfil.username === paramUsername)
+  return profiles.find((profile) => profile.username === paramUsername)
   // retorna elemento con username === parametroUsername, si no consigue entonces retorna undefined
+}
+
+export function getTweetsForUsername(perfil, tweets){
+  // retorna los tweets que tengan el mismo UID del perfil seleccionado
+  return tweets?.filter((tweet) => tweet.uid === perfil.id)
 }

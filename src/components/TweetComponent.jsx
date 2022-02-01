@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
 import { AppContext } from "../context/AppProvider"
@@ -9,27 +9,32 @@ import { firestore } from "../firebase";
 function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid }) {
 
     const { user } = useContext(AppContext);
+    const navigate = useNavigate();
+
+    const handleProfile = (username) => {
+        navigate(`/user/${username}`)
+    }
 
     const deleteTweet = (id) => {
        firestore.collection("tweets").doc(id).delete();
     };
-    // {}
-    // const userProfile = getProfileForUID(context.profiles, user.uid);
+
 
     return (
             <div className="tweetFieldStyle" key={id}>
-                <img src={photo} alt="" className="profileStyleFeed"/>
+                <button onClick={handleProfile}>
+                    <img src={photo} alt="" className="profileStyleFeed"/>
+                </button>
                 <div>
                    <div className="infTweetStyle">
                         <div className="infNameTime">
-                            <Link to={`/user/${username}`}>
+                            <button onClick={handleProfile}>
                                 <h1 
                                     className="userNameStyle"
                                     style={{ backgroundColor: `${color}`, color: "white"}}>
                                     {username}
                                 </h1>
-                            </Link>
-                            
+                            </button>                            
                             <p style={{ marginLeft: "12px" }}> - 5 jun.</p>
                         </div>
                         {uid === user.uid ? (

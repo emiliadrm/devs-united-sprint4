@@ -24,7 +24,7 @@ export default function ConfigPage() {
      // si no esta logueado {}, si esta logueado trae info del usuario
     const loggedUserProfile = getProfileForUID(profiles, user?.uid)
 
-    const [ newUsername, setNewUsername ] = useState(loggedUserProfile.username ?? '');
+    const [ newUsername, setNewUsername ] = useState(user.displayName);
     const color = loggedUserProfile.color ? loggedUserProfile.color : colorList[0];
     const [ pickColor, setPickColor ] = useState(color);
 
@@ -36,26 +36,27 @@ export default function ConfigPage() {
     const sendInfo = (e) => {
         e.preventDefault();
 
-       /* if (newUsername === profiles.username)
+       if (newUsername === profiles.username)
         {
-            return false;
-        } */
-        
-        firestore
-        .collection("profile")
-        .doc(user.uid)
-        .set({
-            username: newUsername,
-            color: pickColor.hex,
-            photoURL: user.photoURL,
-            id: user.uid,
-            email: user.email,
-            name: user.displayName
-            })
-        .then(() => {
-            navigate("/home")
-        });
-           
+            return (
+                console.log('Este nombre de usuario ya existe')
+            )
+        } else {
+             firestore
+            .collection("profile")
+            .doc(user.uid)
+            .set({
+                username: newUsername,
+                color: pickColor.hex,
+                photoURL: user.photoURL,
+                id: user.uid,
+                email: user.email,
+                name: user.displayName
+                })
+            .then(() => {
+                navigate("/home")
+            });
+        }     
       };
 
     return(

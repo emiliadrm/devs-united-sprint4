@@ -99,7 +99,7 @@ function App() {
           <Route path="/" element={<FeedPage/>}/>
           <Route path="/home" element={<FeedPage/>}/>
           <Route path="/settings" element={<ConfigPage />} />
-          <Route path="/user/:usernameProfile" element={<UserProfile/>} />   
+          <Route path="/user/:username" element={<UserProfile/>} />   
         </>) : <Route path="/" element={<LoginPage/>}/>} 
         <Route path="*" element={(<div>Not Found Page</div>)} />
       </Routes>

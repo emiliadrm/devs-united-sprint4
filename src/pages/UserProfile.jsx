@@ -4,18 +4,22 @@ import TweetComponent from "../components/TweetComponent"
 import { useParams, useNavigate } from "react-router-dom";
 import { LogoutButton } from "../components/LogoutButton"
 
-import { getIDforUsername } from "../helpers";
+import { getIDforUsername, getTweetsForUsername} from "../helpers";
 
 export default function UserProfile() {
 
     // funcion para comparar el username === context.username
-    const { profiles } = useContext(AppContext)
+    const { profiles, messages } = useContext(AppContext)
     const navigate = useNavigate();
-    const { usernameProfile } = useParams();
+    const { username } = useParams();
 
-    const userProfileDB = getIDforUsername(profiles, usernameProfile)
+    const userProfileDB = getIDforUsername(profiles, username)
+    const tweetsForUser = getTweetsForUsername(userProfileDB, messages)
 
-    console.log(userProfileDB, 'ERROR PERFIL');
+  //  console.log(messages, 'tweet');
+    console.log(profiles, 'perfil');
+    console.log('perfil de', userProfileDB);
+    // console.log('tweets de', tweetsForUser);
 
     const handleSetting = () => {
         navigate("/settings")
@@ -29,13 +33,12 @@ export default function UserProfile() {
         <main>
             <header className="navBar">
                 <button onClick={handleHome}>HOME</button>-
-                
-                <h2>{usernameProfile}</h2>
+                <h2>{username}</h2>
                 <LogoutButton/>
                 <button onClick={handleSetting}>Configurar</button>
             </header>
             <div>
-                {userProfileDB.map((dataTweet, index) => 
+                {tweetsForUser?.map((dataTweet, index) => 
                     <TweetComponent 
                         key={index}
                         uid={dataTweet.uid}
