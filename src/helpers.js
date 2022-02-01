@@ -16,6 +16,10 @@ export function getIDforUsername(profiles = [], paramUsername) {
 }
 
 export function getTweetsForUsername(perfil, tweets){
+
+  if (perfil == null || perfil === ''){
+    return [];
+  }
   // retorna los tweets que tengan el mismo UID del perfil seleccionado
   return tweets?.filter((tweet) => tweet.uid === perfil.id)
 }

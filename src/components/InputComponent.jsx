@@ -11,7 +11,7 @@ function InputComponent() {
 
     const loggedUserProfile = getProfileForUID(profiles, user?.uid);
 
-    const [tweetM, setTweetM] = useState('');
+    const [tweetM, setTweetM] = useState("");
 
     const handleChange = (e) => {
         e.preventDefault();

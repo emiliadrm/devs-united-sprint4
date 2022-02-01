@@ -16,10 +16,10 @@ export default function UserProfile() {
     const userProfileDB = getIDforUsername(profiles, username)
     const tweetsForUser = getTweetsForUsername(userProfileDB, messages)
 
-  //  console.log(messages, 'tweet');
+    console.log(messages, 'tweet');
     console.log(profiles, 'perfil');
     console.log('perfil de', userProfileDB);
-    // console.log('tweets de', tweetsForUser);
+    console.log('tweets de', tweetsForUser);
 
     const handleSetting = () => {
         navigate("/settings")

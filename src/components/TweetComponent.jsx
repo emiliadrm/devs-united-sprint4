@@ -1,44 +1,37 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
 import { AppContext } from "../context/AppProvider"
 import { firestore } from "../firebase";
 // import { getProfileForUID } from "../helpers";
 
-function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid }) {
+function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, linkProfile }) {
 
     const { user } = useContext(AppContext);
-    const navigate = useNavigate();
-
-    const handleProfile = (username) => {
-        navigate(`/user/${username}`)
-    }
-
-    const deleteTweet = (id) => {
-       firestore.collection("tweets").doc(id).delete();
-    };
-
 
     return (
             <div className="tweetFieldStyle" key={id}>
-                <button onClick={handleProfile}>
+                <Link to={`/user/${username}`}>
                     <img src={photo} alt="" className="profileStyleFeed"/>
-                </button>
+                </Link>
                 <div>
                    <div className="infTweetStyle">
                         <div className="infNameTime">
-                            <button onClick={handleProfile}>
+                            <Link to={`/user/${username}`}>
                                 <h1 
                                     className="userNameStyle"
                                     style={{ backgroundColor: `${color}`, color: "white"}}>
                                     {username}
                                 </h1>
-                            </button>                            
+                            </Link>
                             <p style={{ marginLeft: "12px" }}> - 5 jun.</p>
                         </div>
                         {uid === user.uid ? (
-                            <button type="button" className="deleteClass" onClick={() => deleteTweet(id)}>
+                            <button 
+                                type="button" 
+                                className="deleteClass"
+                                onClick={() => EmergentWindow(id)}>
                                 <img src={deleteIcon} alt="" className="deleteStyle" />
                             </button>
                         ) : null}
@@ -68,6 +61,24 @@ function LikeSection ({ likes }) {
                 <span>{likes}</span>
             </div>
         </>
+    )
+}
+
+
+function EmergentWindow(id) {
+
+    const deleteTweet = (id) => {
+        firestore.collection("tweets").doc(id).delete();
+     };
+
+    return (
+        <div class="window-notice" id="window-notice">
+            <div class="content">
+                <div class="content-text">Usted esta seguro de lo que esta haciendo?</div>
+                <div class="content-buttons" onClick={CloseEvent}>No estoy seguro</div>
+                <div class="content-buttons" onClick={() => deleteTweet(id)}>Si, estoy seguro!</div>
+            </div>
+        </div>
     )
 }
 

@@ -26,7 +26,7 @@ export default function FeedPage() {
             </section>
             <section className="tweetSection">
                 {messages.map((tweet, index) => 
-                    <TweetComponent 
+                    <TweetComponent
                         key={index}
                         uid={tweet.uid}
                         tweetMensaje={tweet.tweetMessage}
