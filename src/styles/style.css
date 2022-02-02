@@ -163,6 +163,11 @@ body {
     font-size: 20px;
 }
 
+.userNameStyleW {
+    color: #ffffff;
+    font-size: 20px;
+}
+
 .likesSection {
     display: flex;
     justify-content: flex-start;
@@ -242,3 +247,12 @@ deleteStyle:hover{
     z-index: 999;
 }
 
+.navBarSubComponent {
+    display: flex;
+    align-items: center;
+}
+
+.navBarSubComponent button {
+    margin: 0 15px;
+    cursor: pointer;
+}

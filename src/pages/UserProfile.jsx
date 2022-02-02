@@ -1,15 +1,18 @@
 import React, { useContext }  from "react";
-import { AppContext } from "../context/AppProvider"
+import { AppContext } from "../context/AppProvider";
 import TweetComponent from "../components/TweetComponent"
 import { useParams, useNavigate } from "react-router-dom";
-import { LogoutButton } from "../components/LogoutButton"
+import { LogoutButton } from "../components/LogoutButton";
+import back from "../resources/back.svg";
+import settingIcon from "../resources/icono-setting.svg";
 
 import { getIDforUsername, getTweetsForUsername} from "../helpers";
+import userEvent from "@testing-library/user-event";
 
 export default function UserProfile() {
 
     // funcion para comparar el username === context.username
-    const { profiles, messages } = useContext(AppContext)
+    const { profiles, messages, user } = useContext(AppContext)
     const navigate = useNavigate();
     const { username } = useParams();
 
@@ -29,13 +32,26 @@ export default function UserProfile() {
         navigate("/home")
     }
 
+    const verifiedUserLogged = (user, userProfileDB) => {
+        if (user.uid === userProfileDB.id) return true;
+    }
+
     return(
         <main>
             <header className="navBar">
-                <button onClick={handleHome}>HOME</button>-
-                <h2>{username}</h2>
-                <LogoutButton/>
-                <button onClick={handleSetting}>Configurar</button>
+                <div className="navBarSubComponent">
+                    <button onClick={handleHome}><img src={back} alt="Volver atras"/></button>
+                    <h1 className="userNameStyleW">{username}</h1>
+                </div>
+                <div className="navBarSubComponent">
+                    {verifiedUserLogged(user, userProfileDB) ? (
+                        <>
+                            <LogoutButton/>
+                            <button onClick={handleSetting}><img src={settingIcon} alt="" width="28px"/></button>
+                        </>
+                    ) : null}
+                    
+                </div>
             </header>
             <div>
                 {tweetsForUser?.map((dataTweet, index) => 

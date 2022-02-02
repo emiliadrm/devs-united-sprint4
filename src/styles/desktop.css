@@ -105,6 +105,7 @@
 .navBar {
     display: flex;
     justify-content: space-between;
+    align-content: center;
     background: #250C23;
     padding: 10px 350px;
     /*hay formas de poner margin manteniendo el color?*/

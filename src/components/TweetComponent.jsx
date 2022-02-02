@@ -84,11 +84,11 @@ function EmergentWindow({id, closeModal}) {
      };
 
     return (
-        <div class="window-notice" id="window-notice">
-            <div class="content">
-                <div class="content-text">Usted esta seguro de lo que esta haciendo?</div>
-                <button type="button" class="content-buttons" onClick={closeModal}>No estoy seguro</button>
-                <button type="button" class="content-buttons" onClick={() => deleteTweet(id)}>Si, estoy seguro!</button>
+        <div className="window-notice" id="window-notice">
+            <div className="content">
+                <div className="content-text">Usted esta seguro de lo que esta haciendo?</div>
+                <button type="button" className="content-buttons" onClick={closeModal}>No estoy seguro</button>
+                <button type="button" className="content-buttons" onClick={() => deleteTweet(id)}>Si, estoy seguro!</button>
             </div>
         </div>
     )
