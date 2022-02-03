@@ -219,7 +219,7 @@ deleteStyle:hover{
   }
 
   .window-notice .content {
-    background: #fff;
+    background: #ffffff;
     color: #2E132C;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(33, 41, 52, .75);
@@ -227,12 +227,14 @@ deleteStyle:hover{
     display: flex;
     flex-direction: column;
     margin: auto;
-    max-width: 600px;
-    min-width: 320px !important;
+    max-width: 400px;
+    min-width: 320px;
     overflow: hidden;
     position: relative;
     width: 100%;
     padding: 2rem;
+    text-align: center;
+    font-family: Silkscreen-bold;
     font-size: 1.3rem;
 }
 
@@ -247,6 +249,13 @@ deleteStyle:hover{
     z-index: 999;
 }
 
+.content-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
 .navBarSubComponent {
     display: flex;
     align-items: center;
@@ -255,4 +264,38 @@ deleteStyle:hover{
 .navBarSubComponent button {
     margin: 0 15px;
     cursor: pointer;
+}
+
+.bWindowEmergent {
+    width: 140px;
+    height: 35px;
+    background-color: #F50D5A;
+    color: #250C23;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-family: Silkscreen-bold;
+    font-size: 1rem;
+}
+
+.bWindowEmergentAccept {
+    font-family: Silkscreen-bold;
+    font-size: 1rem;
+    width: 140px;
+    height: 35px;
+    background-color: #00DA76;
+    color: #250C23;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bWindowEmergentAccept:hover {
+    background-color: #800FFF;
+}
+
+.bWindowEmergent:hover {
+    background-color: #800FFF;
 }

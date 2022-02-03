@@ -24,19 +24,17 @@ function App() {
   // OBTENER INFORMACION DE LOS TWEETS INDIVIDUALMENTE
   useEffect(() => {
 
-    const unsubscribe = firestore.collection("tweets"); // Para desuscribirse y no se actualiza a cada rato
-
     console.log('Se debe ejecutar una sola vez 1');
-
-    firestore.collection("tweets").onSnapshot((snapshot) => {
-      const result = [];
-      snapshot.forEach((d) => {
-        const data = {
-          id: d.id,
-          ...d.data(),
-        }
-        result.push(data);
-      });
+    const unsubscribe = firestore.collection("tweets")
+      .onSnapshot((snapshot) => {
+        const result = [];
+        snapshot.forEach((d) => {
+          const data = {
+            id: d.id,
+            ...d.data(),
+          }
+          result.push(data);
+        });
       const tweets = result.map((doc) => {
         return {
           id: doc.id,
@@ -63,17 +61,16 @@ function App() {
   // OBTENER INFORMACION DEL PERFIL LOGEADO
   useEffect(() => {
 
-    const unsubscribe = firestore.collection("profile");
-
-    firestore.collection("profile").onSnapshot((snapshot) => {
-      const result2 = [];
-      snapshot.forEach((d) => {
-        const data = {
-          uid: d.id,
-          ...d.data(),
-         }
-         result2.push(data);
-      });
+    const unsubscribe = firestore.collection("profile")
+      .onSnapshot((snapshot) => {
+        const result2 = [];
+        snapshot.forEach((d) => {
+          const data = {
+            uid: d.id,
+            ...d.data(),
+          }
+          result2.push(data);
+        });
         const profilesFromDB = result2.map((doc) => {
           return {
             uid: doc.id,
@@ -94,7 +91,6 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<LoginPage/>}/>
         {context.user ? (<>
           <Route path="/" element={<FeedPage/>}/>
           <Route path="/home" element={<FeedPage/>}/>
@@ -109,3 +105,5 @@ function App() {
 
 
 export default App;
+
+// <Route path="/" element={<LoginPage/>}/>

@@ -7,7 +7,7 @@ import back from "../resources/back.svg";
 import settingIcon from "../resources/icono-setting.svg";
 
 import { getIDforUsername, getTweetsForUsername} from "../helpers";
-import userEvent from "@testing-library/user-event";
+
 
 export default function UserProfile() {
 
