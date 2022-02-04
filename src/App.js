@@ -86,6 +86,31 @@ function App() {
         console.log('EXECUTE', profilesFromDB);
     });
     return unsubscribe;
+  }, []); //eslint-disable-line
+
+  // OBTENER INFORMACION DE LIKES
+  useEffect(() => {
+
+    const unsubscribe = firestore.collection("favorites")
+      .onSnapshot((snapshot) => {
+        const result3 = [];
+        snapshot.forEach((d) => {
+          const data = {
+            uid: d.id,
+            ...d.data(),
+          }
+          result3.push(data);
+        });
+        const counterFavoriteLikes = result3.map((doc) => {
+          return {
+            uid: doc.id,
+            tweetLike: doc.tweetLike,
+          };
+        });
+        context.setFavoriteCounter(counterFavoriteLikes);
+        console.log('EXECUTE', counterFavoriteLikes);
+    });
+    return unsubscribe;
   }, []); //eslint-disable-line 
 
   return (

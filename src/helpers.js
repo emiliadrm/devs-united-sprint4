@@ -23,3 +23,8 @@ export function getTweetsForUsername(perfil, tweets){
   // retorna los tweets que tengan el mismo UID del perfil seleccionado
   return tweets?.filter((tweet) => tweet.uid === perfil.id)
 }
+
+export function getLikeForUser(props) {
+
+  
+}
