@@ -48,7 +48,7 @@ function App() {
         };
       })
       console.log('Se debe ejecutar una sola vez cada vez que actualiza/crea un tweet', result);
-      console.log(tweets)
+      console.log('TWEETS',tweets)
       context.setMessages(tweets);
     });
     auth.onAuthStateChanged((user) => {
@@ -83,7 +83,7 @@ function App() {
           };
         });
         context.setProfiles(profilesFromDB);
-        console.log('EXECUTE', profilesFromDB);
+        console.log('PROFILES', profilesFromDB);
     });
     return unsubscribe;
   }, []); //eslint-disable-line
@@ -103,12 +103,13 @@ function App() {
         });
         const counterFavoriteLikes = result3.map((doc) => {
           return {
-            uid: doc.id,
-            tweetLike: doc.tweetLike,
+            id: doc.id,
+            userUID: doc.userUID, 
+            tweetLikeID: doc.tweetLikeID,
           };
         });
         context.setFavoriteCounter(counterFavoriteLikes);
-        console.log('EXECUTE', counterFavoriteLikes);
+        console.log('FAVORITES', counterFavoriteLikes);
     });
     return unsubscribe;
   }, []); //eslint-disable-line 

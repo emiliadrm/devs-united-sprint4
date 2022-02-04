@@ -9,7 +9,7 @@ import { LikeButton } from "./likeButton";
 import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
 
-function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, handleLike }) {
+function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid}) {
 
     const [ modalView, setModalView] = useState(false);
 
@@ -50,7 +50,7 @@ function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, 
                         ) : null}
                    </div>
                    <p className="showTweetStyle">{tweetMensaje}</p>
-                    <LikeButton countLike={likes} handleLike={handleLike} id={id}/>
+                    <LikeButton countLike={likes} id={id}/>
                 </div>
                 <div className="lineTweet"></div>
                 {modalView ? <EmergentWindow id={id} closeModal={handleCloseModal}/> : null}
