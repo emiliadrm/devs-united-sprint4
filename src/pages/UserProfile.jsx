@@ -1,4 +1,4 @@
-import React, { useContext }  from "react";
+import React, { useContext, useState }  from "react";
 import { AppContext } from "../context/AppProvider";
 import TweetComponent from "../components/TweetComponent"
 import { useParams, useNavigate } from "react-router-dom";
@@ -10,6 +10,8 @@ import { getIDforUsername, getTweetsForUsername} from "../helpers";
 
 
 export default function UserProfile() {
+
+    // const [showPage, setShowPage] = useState();
 
     // funcion para comparar el username === context.username
     const { profiles, messages, user } = useContext(AppContext)
@@ -52,7 +54,12 @@ export default function UserProfile() {
                     ) : null}
                     
                 </div>
-            </header>
+            </header>{userProfileDB.uid === user.uid ? (
+                <nav>
+                    <button>POSTS</button>
+                    <button>FAVORITES</button>
+                </nav>
+            ) : null}
             <div>
                 {tweetsForUser?.map((dataTweet, index) => 
                     <TweetComponent 

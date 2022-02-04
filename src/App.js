@@ -89,9 +89,8 @@ function App() {
   }, []); //eslint-disable-line
 
   // OBTENER INFORMACION DE LIKES
-  useEffect(() => {
-
-    const unsubscribe = firestore.collection("favorites")
+useEffect(() => {
+ const unsubscribe = firestore.collection("favorites")
       .onSnapshot((snapshot) => {
         const result3 = [];
         snapshot.forEach((d) => {
@@ -103,7 +102,6 @@ function App() {
         });
         const counterFavoriteLikes = result3.map((doc) => {
           return {
-            id: doc.id,
             userUID: doc.userUID, 
             tweetLikeID: doc.tweetLikeID,
           };

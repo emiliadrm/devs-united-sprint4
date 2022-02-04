@@ -24,7 +24,17 @@ export function getTweetsForUsername(perfil, tweets){
   return tweets?.filter((tweet) => tweet.uid === perfil.id)
 }
 
-export function getLikeForUser(props) {
+export function getCountLike(tweet, arrayLikes) {
 
-  
+  if (tweet == null || tweet === ''){
+    return 0;
+  }
+  if (arrayLikes == null){
+    return 0;
+  }
+  //retorna los un array con la cantidad de counterfavoritelikes que sean igual al ID del tweet
+
+  const numLikes = arrayLikes.filter((element) => element.tweetLikeID === tweet);
+  return numLikes.length;
 }
+

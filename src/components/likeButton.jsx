@@ -1,14 +1,15 @@
 import { firestore } from "../firebase";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../context/AppProvider"
+import { getCountLike } from "../helpers"
 
 
+export function LikeButton ({ id }) {
 
-export function LikeButton ({ countLike, id }) {
+    const { user, favoriteCounter, likeStatus, setLikeStatus } = useContext(AppContext);
 
-    
-    const { user } = useContext(AppContext);
-    const [likeStatus, setLikeStatus] = useState(true);
+    const countLikes = getCountLike(id, favoriteCounter);
+   
 
     const handleInfo = (id) => {
         setLikeStatus(!likeStatus);
@@ -18,18 +19,19 @@ export function LikeButton ({ countLike, id }) {
                 userUID: user.uid,
                 tweetLikeID: id,
             });
-
-        console.log('INFO DEL TWEET', id);
-        console.log(likeStatus, 'STATUS')
     }
 
     const deleteInf = () => {
         setLikeStatus(!likeStatus);
-
-        firestore.collection("favorites").doc().delete();
-
-        console.log(likeStatus, 'STATUS')
-        console.log('TWEET ELIMINADO');
+        firestore.collection("favorites")
+            .where("userUID", "==", user.uid)
+            .where("tweetLikeID", "==", id)
+            .get().then((querySnapshot) => {
+                querySnapshot.forEach((result) => {
+                    console.log('RESULTADO', result.id, result.data());
+                    firestore.collection("favorites").doc(result.id).delete();
+                });
+            });
     }
  
     return(
@@ -59,34 +61,8 @@ export function LikeButton ({ countLike, id }) {
             </button>)
         }
             <span>
-                {countLike}
+                {countLikes}
             </span>
         </>
     )
 }
-
-
-  // const { user } = useContext(AppContext);
-   // () => handleLike(id)
-   // const [ likeStatus, setLikeStatus] = useState(false);
-
-    /*const addLike = (doc) => {
-        firestore.collection("favorites").add({
-                id: user.uid,
-                tweetLike: doc.id,
-            });
-      };
-
-      const deleteLike = (id) => {
-        firestore.collection("favorites").doc(id).delete();
-     };
-
-     const handleLike = (id) => {
-        addLike(id);
-        setLikeStatus(!likeStatus);
-     }
-
-     const handleLike2 = (id) => {
-        deleteLike(id);
-        setLikeStatus(!likeStatus);
-    }*/

@@ -7,10 +7,11 @@ export default function AppProvider(props) {
   const [user, setUser] = useState(null);
   const [profiles, setProfiles] = useState([]);
   const [favoriteCounter, setFavoriteCounter] = useState([]);
+  const [likeStatus, setLikeStatus] = useState(true);
 
 
     return (
-      <AppContext.Provider value={{ profiles, setProfiles, messages, setMessages, user, setUser, favoriteCounter, setFavoriteCounter}}>
+      <AppContext.Provider value={{ likeStatus, setLikeStatus, profiles, setProfiles, messages, setMessages, user, setUser, favoriteCounter, setFavoriteCounter}}>
         {props.children}
       </AppContext.Provider>
     );

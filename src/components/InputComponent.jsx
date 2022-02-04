@@ -29,6 +29,9 @@ function InputComponent() {
                 tweetMessage: tweetM,
                 username: loggedUserProfile.username,
                 uid: user.uid,
+            }).then(() => {
+
+                setTweetM('');
             });
       };
 
