@@ -6,6 +6,9 @@ export function getProfileForUID(profiles = [], uid) {
   // retorna elemento con id === uid, si no consigue entonces retorna undefined
 }
 
+
+
+
 export function getIDforUsername(profiles = [], paramUsername) {
 
   if (paramUsername == null || paramUsername === ''){
@@ -15,14 +18,21 @@ export function getIDforUsername(profiles = [], paramUsername) {
   // retorna elemento con username === parametroUsername, si no consigue entonces retorna undefined
 }
 
+
+
+
 export function getTweetsForUsername(perfil, tweets){
 
   if (perfil == null || perfil === ''){
     return [];
   }
   // retorna los tweets que tengan el mismo UID del perfil seleccionado
-  return tweets?.filter((tweet) => tweet.uid === perfil.id)
+  return tweets?.filter((tweet) => tweet.uid === perfil.id);
 }
+
+
+
+
 
 export function getCountLike(tweet, arrayLikes) {
 
@@ -38,15 +48,44 @@ export function getCountLike(tweet, arrayLikes) {
   return numLikes.length;
 }
 
-export function getIdTweetsForUser(user, ArrayIdTweet) {
+
+
+
+
+export function getLikesForUser(user, arrayFavorites) {
 
   if (user == null){
     return [];
   }
-  if (ArrayIdTweet == null){
+  if (arrayFavorites == null){
+    return [];
+  }
+// RETORNA UN ARRAY CON LOS ELEMENTOS QUE COINCIDEN CON EL USUARIO
+  const likesForUser = arrayFavorites.filter((element) => element.userUID === user.uid);
+  return likesForUser;
+}
+
+
+
+
+
+export function searchTweetsForId(arrayInf) {
+
+  if (arrayInf == null){
     return [];
   }
 
-  const idTweets = ArrayIdTweet.filter((element) => element.userUID);
+// DEBERIA RETORNARME UN ARRAY DE IDS!!!!!!!
+  const idTweets = arrayInf.filter((arrayInf) => arrayInf.tweetLikeID)
   return idTweets;
+}
+
+
+
+
+
+export function getTweetsForId(arrayElementos) {
+  
+  const searchUserTweets = arrayElementos.filter((element) => element.id);
+  return searchUserTweets;
 }

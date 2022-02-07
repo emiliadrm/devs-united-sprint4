@@ -6,7 +6,7 @@ import { LogoutButton } from "../components/LogoutButton";
 import back from "../resources/back.svg";
 import settingIcon from "../resources/icono-setting.svg";
 
-import { getIDforUsername, getTweetsForUsername, getIdTweetsForUser} from "../helpers";
+import { getIDforUsername, getTweetsForUsername, getLikesForUser, searchTweetsForId} from "../helpers";
 
 
 export default function UserProfile() {
@@ -14,17 +14,17 @@ export default function UserProfile() {
     const { profiles, messages, user, favoriteCounter } = useContext(AppContext)
     const navigate = useNavigate();
     const { username } = useParams();
-    const [showFav, setShowPage] = useState(true);
+    const [showFav, setShowPage] = useState(false);
 
     const userProfileDB = getIDforUsername(profiles, username)
     const tweetsForUser = getTweetsForUsername(userProfileDB, messages)
     
     const handleFavView = () => {
-        setShowPage(false);
+        setShowPage(true);
     }
 
     const handlePostView = () => {
-        setShowPage(true);
+        setShowPage(false);
     }
 
     const handleSetting = () => {
@@ -40,8 +40,14 @@ export default function UserProfile() {
     }
 
     // LINEAS DE PRUEBA
-    const TweetsIdTest = getIdTweetsForUser(user, favoriteCounter);
-    console.log(TweetsIdTest);
+    const infLikesForUser = getLikesForUser(user, favoriteCounter);
+    const tweetsIdsArray = searchTweetsForId(infLikesForUser);
+    console.log(infLikesForUser, 'PROV');
+    console.log(tweetsIdsArray, 'TEST');
+    //const tweetsIdMatch = searchTweetsForId(infLikesForUser, messages);
+    //const tweetsToMap = getTweetsForId(tweetsIdMatch);
+    //console.log(tweetsToMap);
+
 
     return(
         <main>
