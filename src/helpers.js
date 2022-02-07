@@ -38,3 +38,15 @@ export function getCountLike(tweet, arrayLikes) {
   return numLikes.length;
 }
 
+export function getIdTweetsForUser(user, ArrayIdTweet) {
+
+  if (user == null){
+    return [];
+  }
+  if (ArrayIdTweet == null){
+    return [];
+  }
+
+  const idTweets = ArrayIdTweet.filter((element) => element.userUID);
+  return idTweets;
+}

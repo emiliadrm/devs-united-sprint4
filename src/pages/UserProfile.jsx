@@ -6,25 +6,26 @@ import { LogoutButton } from "../components/LogoutButton";
 import back from "../resources/back.svg";
 import settingIcon from "../resources/icono-setting.svg";
 
-import { getIDforUsername, getTweetsForUsername} from "../helpers";
+import { getIDforUsername, getTweetsForUsername, getIdTweetsForUser} from "../helpers";
 
 
 export default function UserProfile() {
 
-    // const [showPage, setShowPage] = useState();
-
-    // funcion para comparar el username === context.username
-    const { profiles, messages, user } = useContext(AppContext)
+    const { profiles, messages, user, favoriteCounter } = useContext(AppContext)
     const navigate = useNavigate();
     const { username } = useParams();
+    const [showFav, setShowPage] = useState(true);
 
     const userProfileDB = getIDforUsername(profiles, username)
     const tweetsForUser = getTweetsForUsername(userProfileDB, messages)
+    
+    const handleFavView = () => {
+        setShowPage(false);
+    }
 
-    console.log(messages, 'tweet');
-    console.log(profiles, 'perfil');
-    console.log('perfil de', userProfileDB);
-    console.log('tweets de', tweetsForUser);
+    const handlePostView = () => {
+        setShowPage(true);
+    }
 
     const handleSetting = () => {
         navigate("/settings")
@@ -37,6 +38,10 @@ export default function UserProfile() {
     const verifiedUserLogged = (user, userProfileDB) => {
         if (user.uid === userProfileDB.id) return true;
     }
+
+    // LINEAS DE PRUEBA
+    const TweetsIdTest = getIdTweetsForUser(user, favoriteCounter);
+    console.log(TweetsIdTest);
 
     return(
         <main>
@@ -54,27 +59,53 @@ export default function UserProfile() {
                     ) : null}
                     
                 </div>
-            </header>{userProfileDB.uid === user.uid ? (
-                <nav>
-                    <button>POSTS</button>
-                    <button>FAVORITES</button>
-                </nav>
-            ) : null}
-            <div>
-                {tweetsForUser?.map((dataTweet, index) => 
-                    <TweetComponent 
-                        key={index}
-                        uid={dataTweet.uid}
-                        tweetMensaje={dataTweet.tweetMessage}
-                        id={dataTweet.id}
-                        likes={dataTweet.likes}
-                        username={dataTweet.username}
-                        color={dataTweet.color}
-                        photo={dataTweet.photoURL}
+            </header>
+                {verifiedUserLogged(user, userProfileDB) ? (
+                    <>
+                    <nav>
+                        <button onClick={handlePostView}>POSTS</button>
+                        <button onClick={handleFavView}>FAVORITES</button>
+                    </nav>
+                    <div></div>
+                    {!showFav ?
+                        <div>
+                            {tweetsForUser?.map((dataTweet, index) => 
+                                <TweetComponent 
+                                    key={index}
+                                    uid={dataTweet.uid}
+                                    tweetMensaje={dataTweet.tweetMessage}
+                                    id={dataTweet.id}
+                                    likes={dataTweet.likes}
+                                    username={dataTweet.username}
+                                    color={dataTweet.color}
+                                    photo={dataTweet.photoURL}
+                                />
+                            )}
+                        </div>
+                        :
+                        <div>
+                            {
+                                <div>aqui van los favoritos</div>
+                            }
+                        </div>
+                    }
+                    </>
+                ) : (
+                <div>
+                    {tweetsForUser?.map((dataTweet, index) => 
+                        <TweetComponent 
+                            key={index}
+                            uid={dataTweet.uid}
+                            tweetMensaje={dataTweet.tweetMessage}
+                            id={dataTweet.id}
+                            likes={dataTweet.likes}
+                            username={dataTweet.username}
+                            color={dataTweet.color}
+                            photo={dataTweet.photoURL}
                         />
-                    )
-                }
-            </div>
+                    )}
+                </div>
+                )}
         </main>
     )
 }
