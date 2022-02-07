@@ -1,15 +1,16 @@
 import { firestore } from "../firebase";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider"
 import { getCountLike } from "../helpers"
 
 
 export function LikeButton ({ id }) {
 
-    const { user, favoriteCounter, likeStatus, setLikeStatus } = useContext(AppContext);
-
+    const { user, favoriteCounter } = useContext(AppContext);
+    const [likeStatus, setLikeStatus] = useState(true);
+    // al dar F5 se borra el estatus D: 
     const countLikes = getCountLike(id, favoriteCounter);
-   
+    
 
     const handleInfo = (id) => {
         setLikeStatus(!likeStatus);

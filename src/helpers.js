@@ -102,5 +102,5 @@ export function getTweetsForId(favsid, tweets){
     return [];
   }
   // retorna los tweets que tengan el mismo id del array filtrado
-  return tweets?.filter((tweet) => tweet.id === favsid.id);
+  return tweets?.filter((tweet) => favsid.includes(tweet.id));
 }

@@ -15,17 +15,20 @@ export default function UserProfile() {
     const navigate = useNavigate();
     const { username } = useParams();
     const [showFav, setShowPage] = useState(false);
+    const [showColorButton, setShowColorButton] = useState(false);
 
+    // Para buscar los tweets del user
     const userProfileDB = getIDforUsername(profiles, username);
     const tweetsForUser = getTweetsForUsername(userProfileDB, messages);
-    console.log(tweetsForUser, 'TWEETS');
     
     const handleFavView = () => {
         setShowPage(true);
+        setShowColorButton(true);
     }
 
     const handlePostView = () => {
         setShowPage(false);
+        setShowColorButton(false);
     }
 
     const handleSetting = () => {
@@ -40,12 +43,11 @@ export default function UserProfile() {
         if (user.uid === userProfileDB.id) return true;
     }
 
-    // LINEAS DE PRUEBA
-    const infLikesForUser = getLikesForUser(user, favoriteCounter); // este funciona!
-    const tweetsIdsArray = searchTweetsForId(infLikesForUser); // ahora si funciona!
-    const tweetsFavUser = getTweetsForId(tweetsIdsArray, messages);
-    //console.log(tweetsIdsArray);
-    //console.log(tweetsFavUser, 'CONSOLA');
+    // Para buscar los tweets Favoritos:
+    const infLikesForUser = getLikesForUser(user, favoriteCounter); 
+    const tweetsIdsArray = searchTweetsForId(infLikesForUser);
+    const tweetsFavUser = getTweetsForId(tweetsIdsArray, messages); 
+
 
 
 
@@ -63,18 +65,28 @@ export default function UserProfile() {
                             <button onClick={handleSetting}><img src={settingIcon} alt="" width="28px"/></button>
                         </>
                     ) : null}
-                    
                 </div>
             </header>
+            <section className="flexCenter">
+            <   div className="flexCenter fondoOscuro">
+                    <img 
+                        src={userProfileDB.photoURL} 
+                        alt="" 
+                        className="profileStylePageUser"
+                        style={{backgroundColor:`${userProfileDB.color}`
+                        }}/>
+                    <h1 className="userPageUserName" style={{backgroundColor:`${userProfileDB.color}`
+                        }}>{username}</h1>
+                    </div>
                 {verifiedUserLogged(user, userProfileDB) ? (
                     <>
-                    <nav>
-                        <button onClick={handlePostView}>POSTS</button>
-                        <button onClick={handleFavView}>FAVORITES</button>
+                    <nav className="fondoOscuro barProfile">
+                        <button onClick={handlePostView} className={showColorButton ? `bottonFav` : `bottonPost`}>POSTS</button>
+                        <button onClick={handleFavView} className={showColorButton ? `bottonPost` : `bottonFav`}>FAVORITES</button>
                     </nav>
-                    <div></div>
+                    <div className="cssLinestyle flexCenter"></div>
                     {!showFav ?
-                        <div>
+                        <div className="bodyTweetsPageUser flexCenter">
                             {tweetsForUser?.map((dataTweet, index) => 
                                 <TweetComponent 
                                     key={index}
@@ -89,29 +101,45 @@ export default function UserProfile() {
                             )}
                         </div>
                         :
-                        <div>
-                            {
-                                <div>aqui van los favoritos</div>
-                            }
-                        </div>
+                        <>
+                            <div className="bodyTweetsPageUser flexCenter">
+                                {tweetsFavUser?.map((dataTweet, index) => 
+                                    <TweetComponent 
+                                        key={index}
+                                        uid={dataTweet.uid}
+                                        tweetMensaje={dataTweet.tweetMessage}
+                                        id={dataTweet.id}
+                                        likes={dataTweet.likes}
+                                        username={dataTweet.username}
+                                        color={dataTweet.color}
+                                        photo={dataTweet.photoURL}
+                                    />
+                                )}
+                            </div>
+                        </>
                     }
                     </>
                 ) : (
-                <div>
-                    {tweetsForUser?.map((dataTweet, index) => 
-                        <TweetComponent 
-                            key={index}
-                            uid={dataTweet.uid}
-                            tweetMensaje={dataTweet.tweetMessage}
-                            id={dataTweet.id}
-                            likes={dataTweet.likes}
-                            username={dataTweet.username}
-                            color={dataTweet.color}
-                            photo={dataTweet.photoURL}
-                        />
-                    )}
-                </div>
+                <>
+                    <div className="cssLinestyle flexCenter"></div>
+                    <div className="bodyTweetsPageUser flexCenter">
+                        {tweetsForUser?.map((dataTweet, index) => 
+                            <TweetComponent 
+                                key={index}
+                                uid={dataTweet.uid}
+                                tweetMensaje={dataTweet.tweetMessage}
+                                id={dataTweet.id}
+                                likes={dataTweet.likes}
+                                username={dataTweet.username}
+                                color={dataTweet.color}
+                                photo={dataTweet.photoURL}
+                            />
+                        )}
+                    </div>
+                </>
                 )}
+            </section>
+                
         </main>
     )
 }
