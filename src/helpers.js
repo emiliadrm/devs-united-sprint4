@@ -75,17 +75,32 @@ export function searchTweetsForId(arrayInf) {
     return [];
   }
 
-// DEBERIA RETORNARME UN ARRAY DE IDS!!!!!!!
-  const idTweets = arrayInf.filter((arrayInf) => arrayInf.tweetLikeID)
-  return idTweets;
+// Retorna un array de IDS
+  return arrayInf.map(arrayInf => arrayInf.tweetLikeID);
 }
 
 
 
 
 
-export function getTweetsForId(arrayElementos) {
+// export function getTweetsForId2(messages, arrayElementos) {
   
-  const searchUserTweets = arrayElementos.filter((element) => element.id);
-  return searchUserTweets;
+//   if (arrayElementos == null){
+//     return [];
+//   }
+//   if (messages == null){
+//     return [];
+//   }
+
+//   const searchUserTweets = messages.filter((element) => element.id === arrayElementos);
+//   return searchUserTweets;
+// }
+
+export function getTweetsForId(favsid, tweets){
+
+  if (favsid == null || favsid === ''){
+    return [];
+  }
+  // retorna los tweets que tengan el mismo id del array filtrado
+  return tweets?.filter((tweet) => tweet.id === favsid.id);
 }
