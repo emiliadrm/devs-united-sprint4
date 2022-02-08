@@ -15,7 +15,7 @@ export default function FeedPage() {
     return(
         <main>
             <header className="navBar">
-                <img src={user.photoURL} width="33px"alt="" />
+                <img src={user.photoURL} alt="" style={{borderRadius:`50%`, width:'33px'}}/>
                 <img src={Logito} alt="" />
                 <img src={Titulo} alt="" />
                 <LogoutButton/>

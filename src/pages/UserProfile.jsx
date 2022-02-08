@@ -48,9 +48,6 @@ export default function UserProfile() {
     const tweetsIdsArray = searchTweetsForId(infLikesForUser);
     const tweetsFavUser = getTweetsForId(tweetsIdsArray, messages); 
 
-
-
-
     return(
         <main>
             <header className="navBar">
