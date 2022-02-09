@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { AppContext } from "../context/AppProvider"
 import { EmergentWindow } from "./EmergentWindow";
-import { LikeButton } from "./likeButton";
+import { LikeButton } from "./LikeButton";
 // import { getProfileForUID } from "../helpers";
 
 import deleteIcon from "../resources/deleteIcon.svg";
@@ -43,7 +43,6 @@ function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid})
                         {uid === user.uid ? (
                             <button 
                                 type="button" 
-                                className="deleteClass"
                                 onClick={handleModalView}>
                                 <img src={deleteIcon} alt="" className="deleteStyle" />
                             </button>

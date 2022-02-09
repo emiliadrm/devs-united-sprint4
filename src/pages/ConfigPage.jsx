@@ -60,7 +60,7 @@ export default function ConfigPage() {
       };
 
     return(
-        <div className="bodyLogin">
+        <div className="bodyConfig">
             <img className="devLogo" src={logo} alt="" />
             <div className="devLogin">
                 <div className="tittlePosition">

@@ -4,7 +4,7 @@ import GoogleButton from "../components/GoogleSignButton"
 
 function LoginPage() {
     return(
-        <div className="bodyLogin1">
+        <div className="bodyLogin">
             <img className="devLogo" src={logo} alt="" />
             <div className="devLogin1">
                 <h1 className="loginTittle">LOREM IPSUM DOLOR</h1>

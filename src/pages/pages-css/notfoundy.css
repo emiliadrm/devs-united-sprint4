@@ -1,0 +1,43 @@
+.tittle404 {
+    font-family: silkscreen-bold;
+    font-size: 35px;
+    text-align: center;
+}
+
+.tittle404 .span {
+    color: #FD4D65;
+}
+
+.bodyNotFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgNotFound {
+    width: 639.58px;
+    height: 466.56px;
+    margin: 50px 40px;
+}
+
+@media screen and (max-width: 720px) {
+
+    .tittle404 {
+        font-family: silkscreen-bold;
+        font-size: 30px;
+        text-align: center;
+        margin: 30px 20px;
+    }
+    
+    .tittle404 .span {
+        color: #FD4D65;
+    }
+       
+    .imgNotFound {
+        width: 344.93px;
+        height: 251.62px;
+        margin: 30px 0;
+    }
+
+}

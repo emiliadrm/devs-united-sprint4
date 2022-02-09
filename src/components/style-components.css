@@ -1,0 +1,274 @@
+/*ESTILOS DEL COMPONENTE TWEETCOMPONENT.JSX*/
+
+.profileStyleFeed {
+    max-width: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    padding: 0 15px 0 0;
+}
+
+.tweetFieldStyle {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 571px;
+}
+
+.infTweetStyle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.showTweetStyle {
+    width: 500px;
+    max-height: 136px;
+    font-family: Fira Code;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.3333333432674408px;
+    text-align: left;
+    margin: 17px 0 25px;
+}
+
+.infNameTime {
+    display: flex;
+    flex-flow: row;
+}
+
+.deleteStyle{
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.userNameStyle {
+    color: #2E132C;
+    font-size: 20px;
+}
+
+.lineTweet {
+    background: #60265B;
+    width: 571px;
+    height: 2px;
+    margin: 26px 0;
+}
+
+deleteStyle:hover{ /*El hove del dele es distinto, porque no me funciono como el corazón?*/
+    width: 20px;
+    height: 20px;
+    background: #2E132C;
+    border-radius: 50%;
+    cursor: pointer;
+} 
+
+
+/*ESTILOS DE InputComponent.jsx*/
+
+.submitInputStyle {
+    font-family: Silkscreen-Bold;
+    font-size: 20px;
+    color: #150714;
+    background: #2F112D;
+    width: 102px;
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 404px;
+}
+
+.submitInputStyle:hover {
+    background: chartreuse;
+}
+
+.submitInputStyle:focus{
+    background: cornflowerblue;
+}
+
+.submitInputStyle:active{
+    background: crimson;
+}
+
+.infInputStyle {
+    font-family: FiraCode-Regular;
+    font-size: 16px;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.textInputStyle {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputFieldStyle {
+    font-size: 20px;
+    font-family: FiraCode-Regular;
+    color: #FFFFFF;
+    background: #2F112D;
+    width: 500px;
+    height: 113px;
+    resize: none;
+    border-image: none;
+    border-style: none;
+}
+
+.inputFieldStyle::placeholder {
+    color: #914D8B;
+}
+
+/*ESTILOS DE COMPONENTE LikeButton.jsx*/
+
+svg.heartStyle{
+    color: #FFFFFF;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+svg.heartStyle:hover {
+    color: crimson;
+    cursor: pointer;
+}
+
+.likesSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* ESTILOS DEL COMPONENTE GoogleSingButton y LogoutButton*/
+
+.gButton {
+    font-family: roboto-regular;
+    font-weight: 500;
+    background-color: #4285F4;
+    width: 427px;
+    height: 58px;
+    border-radius: 5px 0px 0px 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gButton:hover {
+    background-color: #5895f8;
+}
+
+.gLogo {
+    background: #FFFFFF;
+    border: 2px solid #4285F4;
+    box-sizing: border-box;
+    border-radius: 5px 0px 0px 5px;
+    width: 58.42px;
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gText {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -0.333333px;
+    color: #FFFFFF;
+    flex: 1;
+    text-align: center;
+}
+
+.gLogout {
+    width: 116px;
+    height: 35px;
+    background-color: #F50D5A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gLogout:hover {
+    background-color: #FFFFFF;
+}
+
+.nameLogout {
+    font-family: silkscreen-bold;
+    font-size: 16px;
+    color: #250C23;
+    padding-right: 5px;
+}
+
+/* ESTILOS DEL COMPONENTE EmergentWindow.jsx*/
+
+.window-notice .content {
+    background: #ffffff;
+    color: #2E132C;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(33, 41, 52, .75);
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 400px;
+    min-width: 320px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    font-family: Silkscreen-bold;
+    font-size: 1.3rem;
+}
+
+  .window-notice {
+    background: rgba(33, 41, 52, .85);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    position: fixed;
+    z-index: 999;
+}
+
+.content-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+.bWindowEmergent {
+    width: 140px;
+    height: 35px;
+    background-color: #F50D5A;
+    color: #250C23;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-family: Silkscreen-bold;
+    font-size: 1rem;
+}
+
+.bWindowEmergentAccept {
+    font-family: Silkscreen-bold;
+    font-size: 1rem;
+    width: 140px;
+    height: 35px;
+    background-color: #00DA76;
+    color: #250C23;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bWindowEmergentAccept:hover {
+    background-color: #800FFF;
+}
+
+.bWindowEmergent:hover {
+    background-color: #800FFF;
+}

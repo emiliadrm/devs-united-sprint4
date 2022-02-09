@@ -5,6 +5,12 @@ import { Route, Routes } from "react-router-dom"
 import './styles/style.css';
 import './styles/desktop.css';
 import './styles/mobile.css';
+import './pages/pages-css/user.css';
+import './pages/pages-css/feed.css';
+import './pages/pages-css/login.css';
+import './pages/pages-css/config.css';
+import './pages/pages-css/notfoundy.css';
+import './components/style-components.css';
 
 /*CONTEXTO Y FIREBASE CONECTION*/
 import { firestore, auth } from "./firebase";
@@ -12,9 +18,10 @@ import { AppContext } from "./context/AppProvider"
 
 /*IMPORTACION DE PAGINAS PARA LAS RUTAS*/
 import LoginPage from "./pages/LoginPage";
-import UserProfile from "./pages/UserProfile"
-import FeedPage from "./pages/FeedPage"
-import ConfigPage from "./pages/ConfigPage"
+import UserProfile from "./pages/UserProfile";
+import FeedPage from "./pages/FeedPage";
+import ConfigPage from "./pages/ConfigPage";
+import NotFound from "./pages/NotFound";
 
 
 function App() {
@@ -121,7 +128,7 @@ useEffect(() => {
           <Route path="/settings" element={<ConfigPage />} />
           <Route path="/user/:username" element={<UserProfile/>} />   
         </>) : <Route path="/" element={<LoginPage/>}/>} 
-        <Route path="*" element={(<div>Not Found Page</div>)} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>
   );
