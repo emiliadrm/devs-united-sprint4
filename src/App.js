@@ -51,6 +51,7 @@ function App() {
           email: doc.email,
           color: doc.color,
           likes: doc.likes,
+          dateString: doc.dateString,
           tweetMessage: doc.tweetMessage,
         };
       })

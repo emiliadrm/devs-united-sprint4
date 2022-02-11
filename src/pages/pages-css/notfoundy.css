@@ -4,7 +4,7 @@
     text-align: center;
 }
 
-.tittle404 .span {
+.tittle404 span {
     color: #FD4D65;
 }
 
@@ -21,7 +21,7 @@
     margin: 50px 40px;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 700px) {
 
     .tittle404 {
         font-family: silkscreen-bold;
@@ -30,7 +30,7 @@
         margin: 30px 20px;
     }
     
-    .tittle404 .span {
+    .tittle404 span {
         color: #FD4D65;
     }
        
