@@ -1,19 +1,29 @@
 import { firestore } from "../firebase";
 import { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider"
-import { getCountLike } from "../helpers"
+import { getCountLike, getLikesForUser } from "../helpers"
 
 
 export function LikeButton ({ id }) {
 
     const { user, favoriteCounter } = useContext(AppContext);
     const [likeStatus, setLikeStatus] = useState(true);
-    // al dar F5 se borra el estatus D: 
     const countLikes = getCountLike(id, favoriteCounter);
     
+/*  const comprobarLike = (id) => {
+        const infLikesForUser = getLikesForUser(user, favoriteCounter);
+        const verifiedUserUid = infLikesForUser.find((element) => element.userUID === user.uid);
+        const verifiedIdTweet = infLikesForUser.find((element) => element.tweetLikeID === id)
+         if (verifiedUserUid === true && verifiedIdTweet === true){
+             return true;
+        } else {
+            return false;
+        }
+    }*/
+
 
     const handleInfo = (id) => {
-        setLikeStatus(!likeStatus);
+       setLikeStatus(!likeStatus);
         firestore
             .collection("favorites")
             .add({

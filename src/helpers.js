@@ -79,23 +79,6 @@ export function searchTweetsForId(arrayInf) {
   return arrayInf.map(arrayInf => arrayInf.tweetLikeID);
 }
 
-
-
-
-
-// export function getTweetsForId2(messages, arrayElementos) {
-  
-//   if (arrayElementos == null){
-//     return [];
-//   }
-//   if (messages == null){
-//     return [];
-//   }
-
-//   const searchUserTweets = messages.filter((element) => element.id === arrayElementos);
-//   return searchUserTweets;
-// }
-
 export function getTweetsForId(favsid, tweets){
 
   if (favsid == null || favsid === ''){
@@ -103,4 +86,15 @@ export function getTweetsForId(favsid, tweets){
   }
   // retorna los tweets que tengan el mismo id del array filtrado
   return tweets?.filter((tweet) => favsid.includes(tweet.id));
+}
+
+export function getDateString() {
+
+  const dateToday = new Date();
+  const monthString = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const monthDate = dateToday.getMonth();
+  const dayDate = dateToday.getDate();
+
+  return `${dayDate} ${monthString[monthDate]}`
 }

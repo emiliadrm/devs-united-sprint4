@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider"
 import { firestore } from "../firebase";
 
-import { getProfileForUID } from "../helpers";
+import { getProfileForUID, getDateString } from "../helpers";
 
 function InputComponent() {
 
@@ -29,6 +29,7 @@ function InputComponent() {
                 tweetMessage: tweetM,
                 username: loggedUserProfile.username,
                 uid: user.uid,
+                dateString: getDateString(),
             }).then(() => {
 
                 setTweetM('');

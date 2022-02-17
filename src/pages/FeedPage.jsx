@@ -35,6 +35,7 @@ export default function FeedPage() {
                         username={tweet.username}
                         color={tweet.color}
                         photo={tweet.photoURL}
+                        dateString={tweet.dateString}
                     />)} 
             </section>
         </main>

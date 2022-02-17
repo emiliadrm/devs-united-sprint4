@@ -9,7 +9,7 @@ import { LikeButton } from "./LikeButton";
 import deleteIcon from "../resources/deleteIcon.svg";
 // import heartR from "../resources/heartR"*/ /*
 
-function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid}) {
+function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, dateString}) {
 
     const [ modalView, setModalView] = useState(false);
 
@@ -38,7 +38,7 @@ function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid})
                                     {username}
                                 </h1>
                             </Link>
-                            <p style={{ marginLeft: "12px" }}> - 5 jun.</p>
+                            <p style={{ marginLeft: "12px" }}> - {dateString}.</p>
                         </div>
                         {uid === user.uid ? (
                             <button 

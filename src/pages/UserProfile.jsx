@@ -44,7 +44,7 @@ export default function UserProfile() {
     }
 
     // Para buscar los tweets Favoritos:
-    const infLikesForUser = getLikesForUser(user, favoriteCounter); 
+    const infLikesForUser = getLikesForUser(user, favoriteCounter);
     const tweetsIdsArray = searchTweetsForId(infLikesForUser);
     const tweetsFavUser = getTweetsForId(tweetsIdsArray, messages); 
 
@@ -94,6 +94,7 @@ export default function UserProfile() {
                                     username={dataTweet.username}
                                     color={dataTweet.color}
                                     photo={dataTweet.photoURL}
+                                    dateString={dataTweet.dateString}
                                 />
                             )}
                         </div>
@@ -110,6 +111,7 @@ export default function UserProfile() {
                                         username={dataTweet.username}
                                         color={dataTweet.color}
                                         photo={dataTweet.photoURL}
+                                        dateString={dataTweet.dateString}
                                     />
                                 )}
                             </div>
@@ -130,6 +132,7 @@ export default function UserProfile() {
                                 username={dataTweet.username}
                                 color={dataTweet.color}
                                 photo={dataTweet.photoURL}
+                                dateString={dataTweet.dateString}
                             />
                         )}
                     </div>

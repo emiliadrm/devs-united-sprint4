@@ -31,7 +31,6 @@ function App() {
   // OBTENER INFORMACION DE LOS TWEETS INDIVIDUALMENTE
   useEffect(() => {
 
-    console.log('Se debe ejecutar una sola vez 1');
     const unsubscribe = firestore.collection("tweets")
       .onSnapshot((snapshot) => {
         const result = [];
@@ -55,8 +54,6 @@ function App() {
           tweetMessage: doc.tweetMessage,
         };
       })
-      console.log('Se debe ejecutar una sola vez cada vez que actualiza/crea un tweet', result);
-      console.log('TWEETS',tweets)
       context.setMessages(tweets);
     });
     auth.onAuthStateChanged((user) => {
@@ -91,7 +88,6 @@ function App() {
           };
         });
         context.setProfiles(profilesFromDB);
-        console.log('PROFILES', profilesFromDB);
     });
     return unsubscribe;
   }, []); //eslint-disable-line
@@ -115,7 +111,6 @@ useEffect(() => {
           };
         });
         context.setFavoriteCounter(counterFavoriteLikes);
-        console.log('FAVORITES', counterFavoriteLikes);
     });
     return unsubscribe;
   }, []); //eslint-disable-line 
