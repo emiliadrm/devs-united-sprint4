@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppProvider"
 // IMAGENES
 import Titulo from "../resources/title.svg"
@@ -8,14 +9,20 @@ import TweetComponent from "../components/TweetComponent"
 import InputComponent from "../components/InputComponent"
 import { LogoutButton } from "../components/LogoutButton"
 
+import { getProfileForId } from "../helpers";
+
 export default function FeedPage() {
 
-    const { user, messages} = useContext(AppContext);
+    const { user, messages, profiles} = useContext(AppContext);
+    const userId = user.uid;
+    const profile = getProfileForId(profiles, userId);
 
     return(
         <main>
             <header className="navBar">
-                <img src={user.photoURL} alt="" style={{borderRadius:`50%`, width:'33px'}}/>
+                <Link to={`/user/${profile.username}`}>
+                    <img src={user.photoURL} alt="" style={{borderRadius:`50%`, width:'33px'}}/>
+                </Link>
                 <img src={Logito} alt="" />
                 <img src={Titulo} alt="" />
                 <LogoutButton/>
@@ -32,10 +39,8 @@ export default function FeedPage() {
                         tweetMensaje={tweet.tweetMessage}
                         id={tweet.id}
                         likes={tweet.likes}
-                        username={tweet.username}
-                        color={tweet.color}
                         photo={tweet.photoURL}
-                        dateString={tweet.dateString}
+                        unixDate={tweet.unixDate}
                     />)} 
             </section>
         </main>

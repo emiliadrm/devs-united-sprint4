@@ -17,8 +17,28 @@ export default function UserProfile() {
     const [showFav, setShowPage] = useState(false);
     const [showColorButton, setShowColorButton] = useState(false);
 
+
+    if (profiles.length === 0) {
+        // Aun se estan cargando los profiles, retornar un mensaje de carga
+        return (
+            <div>
+                Cargando Perfiles...
+            </div>
+        );
+    }
+
     // Para buscar los tweets del user
     const userProfileDB = getIDforUsername(profiles, username);
+
+    if (userProfileDB == null) {
+        // EL usuario no existe
+        return (
+            <div>
+                El usuario no existe
+            </div>
+        );
+    }
+
     const tweetsForUser = getTweetsForUsername(userProfileDB, messages);
     
     const handleFavView = () => {
@@ -91,10 +111,8 @@ export default function UserProfile() {
                                     tweetMensaje={dataTweet.tweetMessage}
                                     id={dataTweet.id}
                                     likes={dataTweet.likes}
-                                    username={dataTweet.username}
-                                    color={dataTweet.color}
                                     photo={dataTweet.photoURL}
-                                    dateString={dataTweet.dateString}
+                                    unixDate={dataTweet.unixDate}
                                 />
                             )}
                         </div>
@@ -108,10 +126,8 @@ export default function UserProfile() {
                                         tweetMensaje={dataTweet.tweetMessage}
                                         id={dataTweet.id}
                                         likes={dataTweet.likes}
-                                        username={dataTweet.username}
-                                        color={dataTweet.color}
                                         photo={dataTweet.photoURL}
-                                        dateString={dataTweet.dateString}
+                                        unixDate={dataTweet.unixDate}
                                     />
                                 )}
                             </div>
@@ -129,17 +145,14 @@ export default function UserProfile() {
                                 tweetMensaje={dataTweet.tweetMessage}
                                 id={dataTweet.id}
                                 likes={dataTweet.likes}
-                                username={dataTweet.username}
-                                color={dataTweet.color}
                                 photo={dataTweet.photoURL}
-                                dateString={dataTweet.dateString}
+                                unixDate={dataTweet.unixDate}
                             />
                         )}
                     </div>
                 </>
                 )}
-            </section>
-                
+            </section>    
         </main>
     )
 }

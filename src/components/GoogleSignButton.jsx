@@ -12,7 +12,7 @@ function GoogleButton() {
         loginWithGoogle().then(credentials => {
             console.log('LOGIN SUCCESS', credentials);
             if (credentials.additionalUserInfo.isNewUser) {
-                navigate("/settings")
+                navigate("/inital-setting")
             } else {
                 navigate("/home")
             }

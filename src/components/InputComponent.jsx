@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider"
 import { firestore } from "../firebase";
 
-import { getProfileForUID, getDateString } from "../helpers";
+import { getProfileForUID, getUnixTime } from "../helpers";
 
 function InputComponent() {
 
@@ -23,13 +23,13 @@ function InputComponent() {
         firestore
             .collection("tweets")
             .add({
-                color: loggedUserProfile.color,
+                // color: loggedUserProfile.color,
                 email: loggedUserProfile.email,
                 photoURL: loggedUserProfile.photoURL,
                 tweetMessage: tweetM,
-                username: loggedUserProfile.username,
+                // username: loggedUserProfile.username,
                 uid: user.uid,
-                dateString: getDateString(),
+                unixDate: getUnixTime(),
             }).then(() => {
 
                 setTweetM('');

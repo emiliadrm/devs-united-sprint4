@@ -1,7 +1,7 @@
 import { firestore } from "../firebase";
 import { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider"
-import { getCountLike, getLikesForUser } from "../helpers"
+import { getCountLike, /*getLikesForUser*/ } from "../helpers"
 
 
 export function LikeButton ({ id }) {

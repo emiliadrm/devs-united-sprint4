@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppProvider"
 import { EmergentWindow } from "./EmergentWindow";
 import { LikeButton } from "./LikeButton";
-// import { getProfileForUID } from "../helpers";
+import { getProfileForId, getDateFromUnixTime } from "../helpers";
 
 import deleteIcon from "../resources/deleteIcon.svg";
-// import heartR from "../resources/heartR"*/ /*
 
-function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, dateString}) {
+function TweetComponent({ tweetMensaje, id, likes, photo, uid, unixDate}) {
 
     const [ modalView, setModalView] = useState(false);
 
@@ -21,24 +20,25 @@ function TweetComponent({ tweetMensaje, id, likes, photo, username, color, uid, 
         setModalView(false);
     }
 
-    const { user } = useContext(AppContext);
+    const { user, profiles } = useContext(AppContext);
+    const profile = getProfileForId(profiles, uid);
 
     return (
             <div className="tweetFieldStyle" key={id}>
-                <Link to={`/user/${username}`}>
+                <Link to={`/user/${profile.username}`}>
                     <img src={photo} alt="" className="profileStyleFeed"/>
                 </Link>
                 <div>
                    <div className="infTweetStyle">
                         <div className="infNameTime">
-                            <Link to={`/user/${username}`}>
+                            <Link to={`/user/${profile.username}`}>
                                 <h1 
                                     className="userNameStyle"
-                                    style={{ backgroundColor: `${color}`, color: '#250C23'}}>
-                                    {username}
+                                    style={{ backgroundColor: `${profile.color}` }}>
+                                    {profile.username}
                                 </h1>
                             </Link>
-                            <p style={{ marginLeft: "12px" }}> - {dateString}.</p>
+                            <p style={{ marginLeft: "12px" }}> - {() => getDateFromUnixTime(unixDate)}.</p>
                         </div>
                         {uid === user.uid ? (
                             <button 

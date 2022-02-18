@@ -18,6 +18,14 @@ export function getIDforUsername(profiles = [], paramUsername) {
   // retorna elemento con username === parametroUsername, si no consigue entonces retorna undefined
 }
 
+export function getProfileForId(profiles = [], id) {
+
+  if (id == null || id === ''){
+    return {};
+  }
+  return profiles.find((profile) => profile.id === id)
+}
+
 
 
 
@@ -88,13 +96,25 @@ export function getTweetsForId(favsid, tweets){
   return tweets?.filter((tweet) => favsid.includes(tweet.id));
 }
 
-export function getDateString() {
 
-  const dateToday = new Date();
+// HELPERS PARA FECHAS Y SORT
+export function getUnixTime() {
+  const today = new Date();
+  return today.getTime();
+}
+
+export function getDateFromUnixTime(unixDate) {
+  const date = new Date(unixDate);
   const monthString = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  const monthDate = dateToday.getMonth();
-  const dayDate = dateToday.getDate();
+  const monthDate = date.getMonth();
+  const dayDate = date.getDate();
 
   return `${dayDate} ${monthString[monthDate]}`
+}
+
+
+export function verifiedExistUsername(profiles, username = '') {
+    const profile = profiles.find((profi) => profi.username.toLowerCase() === username.toLowerCase());
+    return profile != null;
 }

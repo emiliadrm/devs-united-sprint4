@@ -22,6 +22,7 @@ import UserProfile from "./pages/UserProfile";
 import FeedPage from "./pages/FeedPage";
 import ConfigPage from "./pages/ConfigPage";
 import NotFound from "./pages/NotFound";
+import SettingPage from "./pages/SettingPage";
 
 
 function App() {
@@ -45,12 +46,12 @@ function App() {
         return {
           id: doc.id,
           uid: doc.uid,
-          username: doc.username,
+          // username: doc.username,
           photoURL: doc.photoURL,
           email: doc.email,
           color: doc.color,
           likes: doc.likes,
-          dateString: doc.dateString,
+          unixDate: doc.unixDate,
           tweetMessage: doc.tweetMessage,
         };
       })
@@ -121,7 +122,8 @@ useEffect(() => {
         {context.user ? (<>
           <Route path="/" element={<FeedPage/>}/>
           <Route path="/home" element={<FeedPage/>}/>
-          <Route path="/settings" element={<ConfigPage />} />
+          <Route path="/inital-setting" element={<ConfigPage />} />
+          <Route path="/settings" element={<SettingPage />} />
           <Route path="/user/:username" element={<UserProfile/>} />   
         </>) : <Route path="/" element={<LoginPage/>}/>} 
         <Route path="*" element={<NotFound/>} />
@@ -132,5 +134,3 @@ useEffect(() => {
 
 
 export default App;
-
-// <Route path="/" element={<LoginPage/>}/>
