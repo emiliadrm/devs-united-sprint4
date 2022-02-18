@@ -16,7 +16,8 @@ export default function FeedPage() {
     const { user, messages, profiles} = useContext(AppContext);
     const userId = user.uid;
     const profile = getProfileForId(profiles, userId);
-
+    console.log(profile);
+    
     return(
         <main>
             <header className="navBar">

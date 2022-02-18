@@ -38,7 +38,7 @@ function TweetComponent({ tweetMensaje, id, likes, photo, uid, unixDate}) {
                                     {profile.username}
                                 </h1>
                             </Link>
-                            <p style={{ marginLeft: "12px" }}> - {() => getDateFromUnixTime(unixDate)}.</p>
+                            <p style={{ marginLeft: "12px" }}> - {getDateFromUnixTime(unixDate)}.</p>
                         </div>
                         {uid === user.uid ? (
                             <button 

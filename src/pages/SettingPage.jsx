@@ -83,7 +83,7 @@ export default function ConfigPage() {
                                     onClick={() => setPickColor(color)}
                                     key={index}
                                     className={classColor}
-                                    style={{ backgroundColor: color.hex }}
+                                    style={{ backgroundColor: color }}
                                 />
                         );
                     })}
