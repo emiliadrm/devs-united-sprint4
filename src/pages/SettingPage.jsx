@@ -4,6 +4,8 @@ import logo from "../resources/logo.svg";
 import { firestore } from "../firebase";
 import { AppContext } from "../context/AppProvider";
 import "../styles/style.css";
+import closeIcon from '../resources/close.svg';
+import LoadingPage from "./LoadingPage";
 
 import { getProfileForUID, verifiedExistUsername} from "../helpers";
 
@@ -23,13 +25,13 @@ export default function ConfigPage() {
     const [ pickColor, setPickColor ] = useState();
 
     if (user == null || profiles.length === 0) {
-        return(<div>Loading...</div>);
-    } // siento que deberia ir en otra parte, luego lo cambio
+        return(<LoadingPage/>);
+    }
 
     // si no esta logueado {}, si esta logueado trae info del usuario
     const loggedUserProfile = getProfileForUID(profiles, user?.uid)
 
-    const selectedColor = pickColor || loggedUserProfile.color;
+    const selectedColor = pickColor || loggedUserProfile?.color || colorList[0];
 
     const handleInfo = (e) => {
         e.preventDefault();
@@ -49,6 +51,9 @@ export default function ConfigPage() {
                 username: newUsername,
                 color: selectedColor,
                 photoURL: user.photoURL,
+                id: user.uid,
+                email: user.email,
+                name: user.displayName
                 })
             .then(() => {
                 navigate("/home")
@@ -60,6 +65,9 @@ export default function ConfigPage() {
         <div className="bodyConfig">
             <img className="devLogo" src={logo} alt="" />
             <div className="devLogin">
+                <button className="buttonPosition" onClick={() => navigate(-1)}>
+                    <img src={closeIcon} alt="" width="36px"s/>
+                </button>
                 <div className="tittlePosition">
                     <h1 className="loginTittle">YOUR USERNAME NOW IS</h1>
                     <h1 className="loginTittle"><span style={{ color: "#f50d5a"}}>{loggedUserProfile.username}!</span></h1>

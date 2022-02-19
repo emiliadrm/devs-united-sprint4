@@ -1,0 +1,247 @@
+.loadingStyle {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingText {
+    margin-top: 5rem;
+    font-size: 72px;
+}
+
+.css-selector {
+    background: linear-gradient(232deg, #f50d5a, #ff865c, #ffea5c, #00da76, #0096ce, #800fff);
+    background-size: 1200% 1200%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: loadingText 10s ease infinite;
+    -moz-animation: loadingText 10s ease infinite;
+    -o-animation: loadingText 10s ease infinite;
+    animation: loadingText 10s ease infinite;
+}
+
+@-webkit-keyframes loadingText {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+@-moz-keyframes loadingText {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+@-o-keyframes loadingText {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+@keyframes loadingText {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+
+.barLoading {
+    margin-top: 100px;
+    width: 75%;
+    height: 150px;
+    background: linear-gradient(269deg, #f50d5a, #ff865c, #ffea5c, #00da76, #0096ce, #800fff);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.spaceStyle{
+    width: 25px;
+    height: 100%;
+    background-color: #2E132C;
+}
+
+.css-selector2 {
+    background: linear-gradient(269deg, #f50d5a, #ff865c, #ffea5c, #00da76, #0096ce, #800fff);
+    background-size: 1200% 1200%;
+
+    -webkit-animation: barLoading 10s ease infinite;
+    -moz-animation: barLoading 10s ease infinite;
+    -o-animation: barLoading 10s ease infinite;
+    animation: barLoading 10s ease infinite;
+}
+
+@-webkit-keyframes barLoading {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes barLoading {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+@-o-keyframes barLoading {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+@keyframes barLoading {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 51%}
+    100%{background-position:0% 50%}
+}
+
+.linealTextLoad {
+    display: flex;
+}
+
+.bounce {
+    animation: bounce 5s linear 0s infinite normal both;
+}
+
+.bounce2 {
+    animation: bounce 6s linear 0s infinite normal both;
+}
+
+.bounce3 {
+    animation: bounce 7s linear 0s infinite normal both;
+}
+
+@keyframes bounce {
+    0% {
+      animation-timing-function: ease-in;
+      opacity: 1;
+      transform: translateY(-27px);
+    }
+  
+    24% {
+      opacity: 1;
+    }
+  
+    40% {
+      animation-timing-function: ease-in;
+      transform: translateY(-24px);
+    }
+  
+    65% {
+      animation-timing-function: ease-in;
+      transform: translateY(-12px);
+    }
+  
+    82% {
+      animation-timing-function: ease-in;
+      transform: translateY(-6px);
+    }
+  
+    93% {
+      animation-timing-function: ease-in;
+      transform: translateY(-4px);
+    }
+  
+    25%,
+    55%,
+    75%,
+    87% {
+      animation-timing-function: ease-out;
+      transform: translateY(0px);
+    }
+  
+    100% {
+      animation-timing-function: ease-out;
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes bounce2 {
+    0% {
+      animation-timing-function: ease-in;
+      opacity: 1;
+      transform: translateY(-30px);
+    }
+  
+    24% {
+      opacity: 1;
+    }
+  
+    40% {
+      animation-timing-function: ease-in;
+      transform: translateY(-24px);
+    }
+  
+    65% {
+      animation-timing-function: ease-in;
+      transform: translateY(-12px);
+    }
+  
+    82% {
+      animation-timing-function: ease-in;
+      transform: translateY(-6px);
+    }
+  
+    93% {
+      animation-timing-function: ease-in;
+      transform: translateY(-4px);
+    }
+  
+    25%,
+    55%,
+    75%,
+    87% {
+      animation-timing-function: ease-out;
+      transform: translateY(0px);
+    }
+  
+    100% {
+      animation-timing-function: ease-out;
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes bounce3 {
+    0% {
+      animation-timing-function: ease-in;
+      opacity: 1;
+      transform: translateY(-45px);
+    }
+  
+    24% {
+      opacity: 1;
+    }
+  
+    40% {
+      animation-timing-function: ease-in;
+      transform: translateY(-24px);
+    }
+  
+    65% {
+      animation-timing-function: ease-in;
+      transform: translateY(-12px);
+    }
+  
+    82% {
+      animation-timing-function: ease-in;
+      transform: translateY(-6px);
+    }
+  
+    93% {
+      animation-timing-function: ease-in;
+      transform: translateY(-4px);
+    }
+  
+    25%,
+    55%,
+    75%,
+    87% {
+      animation-timing-function: ease-out;
+      transform: translateY(0px);
+    }
+  
+    100% {
+      animation-timing-function: ease-out;
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }

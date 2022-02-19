@@ -23,7 +23,7 @@
 .showTweetStyle {
     width: 500px;
     max-height: 136px;
-    font-family: Fira Code;
+    font-family: FiraCode-Regular;
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.3333333432674408px;
@@ -118,11 +118,20 @@ deleteStyle:hover{ /*El hove del dele es distinto, porque no me funciono como el
     color: #914D8B;
 }
 
+.inputFieldStyle:focus {
+    outline: 0;
+}
+
+.redOut {
+    color: #F50D5A;
+    font-family: FiraCode-regular;
+    font-size: 8px;
+}
+
 /*ESTILOS DE COMPONENTE LikeButton.jsx*/
 
 svg.heartStyle{
     color: #FFFFFF;
-    margin-right: 12px;
     cursor: pointer;
 }
 
@@ -135,6 +144,12 @@ svg.heartStyle:hover {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-right: 12px;
+}
+
+.likeButtonPosition {
+    display: flex;
+    align-content: center;
 }
 
 /* ESTILOS DEL COMPONENTE GoogleSingButton y LogoutButton*/
@@ -168,9 +183,9 @@ svg.heartStyle:hover {
 }
 
 .gText {
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 24px;
     line-height: 28px;
     letter-spacing: -0.333333px;
@@ -271,4 +286,9 @@ svg.heartStyle:hover {
 
 .bWindowEmergent:hover {
     background-color: #800FFF;
+}
+
+.barStyle {
+    background-color: #00DA76;
+    height: 3px;
 }

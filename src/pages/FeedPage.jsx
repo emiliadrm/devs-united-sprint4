@@ -8,20 +8,23 @@ import Logito from "../resources/logo-small.svg"
 import TweetComponent from "../components/TweetComponent"
 import InputComponent from "../components/InputComponent"
 import { LogoutButton } from "../components/LogoutButton"
+import LoadingPage from "./LoginPage";
 
-import { getProfileForId } from "../helpers";
+import { getProfileForUID } from "../helpers";
 
 export default function FeedPage() {
 
     const { user, messages, profiles} = useContext(AppContext);
-    const userId = user.uid;
-    const profile = getProfileForId(profiles, userId);
-    console.log(profile);
+    const loggedUserProfile = getProfileForUID(profiles, user?.uid)
     
+    if (loggedUserProfile == null) {
+        return (<LoadingPage/>)
+    }
+
     return(
         <main>
             <header className="navBar">
-                <Link to={`/user/${profile.username}`}>
+                <Link to={`/user/${loggedUserProfile.username}`}>
                     <img src={user.photoURL} alt="" style={{borderRadius:`50%`, width:'33px'}}/>
                 </Link>
                 <img src={Logito} alt="" />
@@ -29,11 +32,13 @@ export default function FeedPage() {
                 <LogoutButton/>
             </header>
             <section className="textSection">
-                <img src={user.photoURL} alt="" className="profileStyleFeed"/>
+                <Link to={`/user/${loggedUserProfile.username}`}>
+                    <img src={user.photoURL} alt="" className="profileStyleFeed"/>
+                </Link>
                 <InputComponent />
             </section>
             <section className="tweetSection">
-                {messages.map((tweet, index) => 
+                {messages.sort((messages) => messages.unixDate).map((tweet, index) => 
                     <TweetComponent
                         key={index}
                         uid={tweet.uid}

@@ -5,6 +5,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { LogoutButton } from "../components/LogoutButton";
 import back from "../resources/back.svg";
 import settingIcon from "../resources/icono-setting.svg";
+import LoadingPage from "./LoadingPage";
+import NotFound from "./NotFound";
 
 import { getIDforUsername, getTweetsForUsername, getLikesForUser, searchTweetsForId, getTweetsForId} from "../helpers";
 
@@ -19,12 +21,7 @@ export default function UserProfile() {
 
 
     if (profiles.length === 0) {
-        // Aun se estan cargando los profiles, retornar un mensaje de carga
-        return (
-            <div>
-                Cargando Perfiles...
-            </div>
-        );
+         return (<LoadingPage/>); // Aun se estan cargando los profiles, retornar un mensaje de carga
     }
 
     // Para buscar los tweets del user
@@ -32,11 +29,7 @@ export default function UserProfile() {
 
     if (userProfileDB == null) {
         // EL usuario no existe
-        return (
-            <div>
-                El usuario no existe
-            </div>
-        );
+        return (<NotFound/>);
     }
 
     const tweetsForUser = getTweetsForUsername(userProfileDB, messages);
@@ -68,12 +61,22 @@ export default function UserProfile() {
     const tweetsIdsArray = searchTweetsForId(infLikesForUser);
     const tweetsFavUser = getTweetsForId(tweetsIdsArray, messages); 
 
+    if (tweetsForUser == null) {
+        return (<><h1>Aun no hay tweets que mostrar 🥺</h1></>);
+    }
+
+    if (tweetsFavUser == null) {
+        return (<><h1>Aun no tienes tweets favoritos 🥺</h1></>);
+    }
+
+
     return(
         <main>
             <header className="navBar">
                 <div className="navBarSubComponent">
-                    <button onClick={handleHome}><img src={back} alt="Volver atras"/></button>
-                    <h1 className="userNameStyleW">{username}</h1>
+                    <button onClick={handleHome} ><img src={back} alt="Volver atras"/>
+                        <h1 className="userNameStyleW" style={{ marginLeft: '15px'}}>{username}</h1>
+                    </button>
                 </div>
                 <div className="navBarSubComponent">
                     {verifiedUserLogged(user, userProfileDB) ? (

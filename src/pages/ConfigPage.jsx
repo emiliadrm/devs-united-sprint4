@@ -4,6 +4,7 @@ import logo from "../resources/logo.svg";
 import { firestore } from "../firebase";
 import { AppContext } from "../context/AppProvider";
 import "../styles/style.css";
+import LoadingPage from "./LoadingPage";
 
 import { getProfileForUID, verifiedExistUsername} from "../helpers";
 
@@ -23,13 +24,13 @@ export default function ConfigPage() {
     const [ pickColor, setPickColor ] = useState();
 
     if (user == null || profiles.length === 0) {
-        return(<div>Loading...</div>);
+        return(<LoadingPage/>);
     } // siento que deberia ir en otra parte, luego lo cambio
 
     // si no esta logueado {}, si esta logueado trae info del usuario
     const loggedUserProfile = getProfileForUID(profiles, user?.uid)
 
-    const selectedColor = pickColor || loggedUserProfile.color;
+    const selectedColor = pickColor || loggedUserProfile?.color || colorList[0];
 
     const handleInfo = (e) => {
         e.preventDefault();
@@ -72,7 +73,6 @@ export default function ConfigPage() {
                     placeholder="Type your username"
                     className="inputNickname" minLength="5"
                     maxLength="12"
-                    id={loggedUserProfile.id}
                     value={newUsername}
                     onChange={handleInfo}
                 />
@@ -86,7 +86,7 @@ export default function ConfigPage() {
                                     onClick={() => setPickColor(color)}
                                     key={index}
                                     className={classColor}
-                                    style={{ backgroundColor: color.hex }}
+                                    style={{ backgroundColor: color}}
                                 />
                         );
                     })}

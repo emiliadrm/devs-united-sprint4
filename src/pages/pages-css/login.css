@@ -5,7 +5,7 @@
     flex-flow: row;
     justify-content: space-evenly;
     align-items: flex-start;
-    margin-top: 15%;
+    margin-top: 10%;
 }
 
 
@@ -44,5 +44,6 @@
     max-width: 433px;
     font-size: 24px;
     margin: 30px 0 30px;
-    text-align: center;
+    text-align: left;
+    line-height: 30px;
 }

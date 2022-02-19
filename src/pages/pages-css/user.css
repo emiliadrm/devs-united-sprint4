@@ -6,10 +6,10 @@
 .navBarSubComponent {
     display: flex;
     align-items: center;
-
 }
 
 .navBarSubComponent button {
+    display: flex;
     margin: 0 15px;
     cursor: pointer;
 }

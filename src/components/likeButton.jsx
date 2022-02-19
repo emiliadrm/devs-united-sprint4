@@ -46,7 +46,7 @@ export function LikeButton ({ id }) {
     }
  
     return(
-        <>
+        <div className="likeButtonPosition">
         {likeStatus ?
             (<button className="likesSection" onClick={() => handleInfo(id)}>
                     <svg 
@@ -74,6 +74,6 @@ export function LikeButton ({ id }) {
             <span>
                 {countLikes}
             </span>
-        </>
+        </div>
     )
 }

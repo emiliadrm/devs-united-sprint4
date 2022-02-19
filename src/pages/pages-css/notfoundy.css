@@ -18,7 +18,7 @@
 .imgNotFound {
     width: 639.58px;
     height: 466.56px;
-    margin: 50px 40px;
+    margin: 20px 20px;
 }
 
 @media screen and (max-width: 700px) {
@@ -40,4 +40,20 @@
         margin: 30px 0;
     }
 
+}
+
+.backButton {
+    cursor: pointer;
+    width: 250px;
+    height: 40px;
+    background-color: #00DA76;
+    font-size: 30px;
+    font-family: Silkscreen-Bold;
+    color: #2E132C;
+    text-align: center;
+    margin: 15px 0 30px;
+}
+
+.backButton:hover {
+    background-color: #800FFF;
 }

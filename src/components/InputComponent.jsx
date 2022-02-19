@@ -12,6 +12,7 @@ function InputComponent() {
     const loggedUserProfile = getProfileForUID(profiles, user?.uid);
 
     const [tweetM, setTweetM] = useState("");
+    // const [alertW, setAlertW] = useState(false);
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -20,21 +21,32 @@ function InputComponent() {
     
     const sendTweetM = (e) => {
         e.preventDefault();
-        firestore
-            .collection("tweets")
-            .add({
-                // color: loggedUserProfile.color,
-                email: loggedUserProfile.email,
-                photoURL: loggedUserProfile.photoURL,
-                tweetMessage: tweetM,
-                // username: loggedUserProfile.username,
-                uid: user.uid,
-                unixDate: getUnixTime(),
-            }).then(() => {
-
-                setTweetM('');
-            });
+        if(tweetM.length === 0){
+            // no sure what to put here
+        } else {
+            firestore
+                .collection("tweets")
+                .add({
+                    email: loggedUserProfile.email,
+                    photoURL: loggedUserProfile.photoURL,
+                    tweetMessage: tweetM,
+                    uid: user.uid,
+                    unixDate: getUnixTime(),
+                }).then(() => {
+                        setTweetM('');
+                });
+            }
       };
+
+    const tweetLarge = tweetM.length;
+
+    const barProgressCss = () => {
+        if (tweetLarge === 0) {
+            return '0';
+        } else {
+            return `${tweetLarge / 2}`;
+        }
+    }
 
     return (
             <form action="" className="textInputStyle">
@@ -49,9 +61,11 @@ function InputComponent() {
                     minLength="1"
                     maxLength="200"
                     onChange={handleChange}
+                    required
                     ></textarea>
+                <div className="barStyle" style={{width: barProgressCss() + "%"}}></div>
                 <div className="infInputStyle">
-                    <span style={{ color: "#FFFFFF" }}>1</span>
+                    <span style={{ color: "#FFFFFF" }}>{tweetLarge}</span>
                     <span style={{ color: "#f50d5a" }}>200 max.</span>
                 </div>
                 <input type="submit" className="submitInputStyle" onClick={sendTweetM} value="POST"/>

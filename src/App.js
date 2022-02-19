@@ -11,6 +11,7 @@ import './pages/pages-css/login.css';
 import './pages/pages-css/config.css';
 import './pages/pages-css/notfoundy.css';
 import './components/style-components.css';
+import './pages/pages-css/loading.css';
 
 /*CONTEXTO Y FIREBASE CONECTION*/
 import { firestore, auth } from "./firebase";
@@ -23,6 +24,7 @@ import FeedPage from "./pages/FeedPage";
 import ConfigPage from "./pages/ConfigPage";
 import NotFound from "./pages/NotFound";
 import SettingPage from "./pages/SettingPage";
+import LoadingPage from "./pages/LoadingPage";
 
 
 function App() {
@@ -115,7 +117,6 @@ useEffect(() => {
     });
     return unsubscribe;
   }, []); //eslint-disable-line 
-
   return (
     <div className="App">
       <Routes>
@@ -127,6 +128,7 @@ useEffect(() => {
           <Route path="/user/:username" element={<UserProfile/>} />   
         </>) : <Route path="/" element={<LoginPage/>}/>} 
         <Route path="*" element={<NotFound/>} />
+        <Route path="loading" element={<LoadingPage/>} />
       </Routes>
     </div>
   );
