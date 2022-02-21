@@ -10,7 +10,7 @@ function GoogleButton() {
     const buttonHome = () => {
 
         loginWithGoogle().then(credentials => {
-            console.log('LOGIN SUCCESS', credentials);
+            // console.log('LOGIN SUCCESS', credentials);
             if (credentials.additionalUserInfo.isNewUser) {
                 navigate("/inital-setting")
             } else {

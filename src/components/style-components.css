@@ -140,6 +140,14 @@ svg.heartStyle:hover {
     cursor: pointer;
 }
 
+svg.heartStyle2{
+    cursor: pointer;
+}
+
+svg.heartStyle2:hover {
+    cursor: pointer;
+}
+
 .likesSection {
     display: flex;
     justify-content: flex-start;

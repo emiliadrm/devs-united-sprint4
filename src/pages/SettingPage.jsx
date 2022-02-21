@@ -23,6 +23,7 @@ export default function ConfigPage() {
     const { user, profiles } = useContext(AppContext);
     const [ newUsername, setNewUsername ] = useState('');
     const [ pickColor, setPickColor ] = useState();
+    const [alertName, setAlertName] = (false);
 
     if (user == null || profiles.length === 0) {
         return(<LoadingPage/>);
@@ -35,14 +36,15 @@ export default function ConfigPage() {
 
     const handleInfo = (e) => {
         e.preventDefault();
-        setNewUsername(e.target.value); 
+        setNewUsername(e.target.value);
+        setAlertName(false);
     };
     
     const sendInfo = (e) => {
         e.preventDefault();
         if (verifiedExistUsername(profiles, newUsername))
         {
-            console.log('Este nombre de usuario ya existe');
+            setAlertName(true);
         } else {
              firestore
             .collection("profile")
@@ -81,6 +83,7 @@ export default function ConfigPage() {
                     value={newUsername}
                     onChange={handleInfo}
                 />
+                {alertName ? (<><h1>Este nombre de usuario ya existe 🚨</h1></>) : null}
                 <h2 className="loginSubTittle">Select the new color you want</h2>
                 <div className="selectColorClass">
                     {colorList.map((color, index) => {

@@ -61,15 +61,6 @@ export default function UserProfile() {
     const tweetsIdsArray = searchTweetsForId(infLikesForUser);
     const tweetsFavUser = getTweetsForId(tweetsIdsArray, messages); 
 
-    if (tweetsForUser.length === 0) {
-        return (<><h1>Aun no hay tweets que mostrar 🥺</h1></>);
-    }
-
-    if (tweetsFavUser.length === 0) {
-        return (<><h1>Aun no tienes tweets favoritos 🥺</h1></>);
-    }
-
-
     return(
         <main>
             <header className="navBar">
@@ -105,34 +96,39 @@ export default function UserProfile() {
                         <button onClick={handleFavView} className={showColorButton ? `bottonPost` : `bottonFav`}>FAVORITES</button>
                     </nav>
                     <div className="cssLinestyle flexCenter"></div>
-                    {!showFav ?
-                        <div className="bodyTweetsPageUser flexCenter">
-                            {tweetsForUser?.map((dataTweet, index) => 
-                                <TweetComponent 
-                                    key={index}
-                                    uid={dataTweet.uid}
-                                    tweetMensaje={dataTweet.tweetMessage}
-                                    id={dataTweet.id}
-                                    likes={dataTweet.likes}
-                                    photo={dataTweet.photoURL}
-                                    unixDate={dataTweet.unixDate}
-                                />
-                            )}
+                        {!showFav ?
+                            <div className="bodyTweetsPageUser flexCenter">
+                                {tweetsForUser.length === 0 ?
+                                    (<><h1>Aun no tienes tweets 🥺</h1></>) : 
+                                    (tweetsForUser.sort((mesgA, mesgB) => mesgA.unixDate < mesgB.unixDate ? 1 : -1).map((dataTweet, index) => 
+                                        <TweetComponent 
+                                            key={index}
+                                            uid={dataTweet.uid}
+                                            tweetMensaje={dataTweet.tweetMessage}
+                                            id={dataTweet.id}
+                                            likes={dataTweet.likes}
+                                            photo={dataTweet.photoURL}
+                                            unixDate={dataTweet.unixDate}
+                                        />)
+                                    )
+                                }
                         </div>
                         :
                         <>
                             <div className="bodyTweetsPageUser flexCenter">
-                                {tweetsFavUser?.map((dataTweet, index) => 
-                                    <TweetComponent 
-                                        key={index}
-                                        uid={dataTweet.uid}
-                                        tweetMensaje={dataTweet.tweetMessage}
-                                        id={dataTweet.id}
-                                        likes={dataTweet.likes}
-                                        photo={dataTweet.photoURL}
-                                        unixDate={dataTweet.unixDate}
-                                    />
-                                )}
+                                {tweetsFavUser.length === 0 ? (<h1>Aun no tienes tweets favoritos 🥺</h1>) :
+                                    (tweetsFavUser?.sort((mesgA, mesgB) => mesgA.unixDate < mesgB.unixDate ? 1 : -1).map((dataTweet, index) => 
+                                            <TweetComponent 
+                                                key={index}
+                                                uid={dataTweet.uid}
+                                                tweetMensaje={dataTweet.tweetMessage}
+                                                id={dataTweet.id}
+                                                likes={dataTweet.likes}
+                                                photo={dataTweet.photoURL}
+                                                unixDate={dataTweet.unixDate}
+                                            />)
+                                        )
+                                    }
                             </div>
                         </>
                     }
@@ -141,7 +137,8 @@ export default function UserProfile() {
                 <>
                     <div className="cssLinestyle flexCenter"></div>
                     <div className="bodyTweetsPageUser flexCenter">
-                        {tweetsForUser?.map((dataTweet, index) => 
+                        { tweetsForUser.length === 0 ? (<><h1>Aun no tiene tweets 🥺</h1></>) :
+                        (tweetsForUser?.sort((mesgA, mesgB) => mesgA.unixDate < mesgB.unixDate ? 1 : -1).map((dataTweet, index) => 
                             <TweetComponent 
                                 key={index}
                                 uid={dataTweet.uid}
@@ -151,7 +148,7 @@ export default function UserProfile() {
                                 photo={dataTweet.photoURL}
                                 unixDate={dataTweet.unixDate}
                             />
-                        )}
+                        ))}
                     </div>
                 </>
                 )}

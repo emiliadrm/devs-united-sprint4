@@ -38,7 +38,7 @@ export default function FeedPage() {
                 <InputComponent />
             </section>
             <section className="tweetSection">
-                {messages.sort((messages) => messages.unixDate).map((tweet, index) => 
+                {messages.sort((mesgA, mesgB) => mesgA.unixDate < mesgB.unixDate ? 1 : -1).map((tweet, index) => 
                     <TweetComponent
                         key={index}
                         uid={tweet.uid}

@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppProvider"
 import { EmergentWindow } from "./EmergentWindow";
 import { LikeButton } from "./LikeButton";
 import { getProfileForId, getDateFromUnixTime } from "../helpers";
-
+import profileDefault from "../resources/profilePicDefault.svg"
 import deleteIcon from "../resources/deleteIcon.svg";
 
 function TweetComponent({ tweetMensaje, id, likes, photo, uid, unixDate}) {
@@ -26,7 +26,10 @@ function TweetComponent({ tweetMensaje, id, likes, photo, uid, unixDate}) {
     return (
             <div className="tweetFieldStyle" key={id}>
                 <Link to={`/user/${profile.username}`}>
-                    <img src={photo} alt="" className="profileStyleFeed"/>
+                    {photo === undefined ? 
+                        (<img src={profileDefault} alt="" className="profileStyleFeed"/>) :
+                        (<img src={photo} alt="" className="profileStyleFeed"/>)
+                    }   
                 </Link>
                 <div>
                    <div className="infTweetStyle">
