@@ -61,11 +61,11 @@ export default function UserProfile() {
     const tweetsIdsArray = searchTweetsForId(infLikesForUser);
     const tweetsFavUser = getTweetsForId(tweetsIdsArray, messages); 
 
-    if (tweetsForUser == null) {
+    if (tweetsForUser.length === 0) {
         return (<><h1>Aun no hay tweets que mostrar 🥺</h1></>);
     }
 
-    if (tweetsFavUser == null) {
+    if (tweetsFavUser.length === 0) {
         return (<><h1>Aun no tienes tweets favoritos 🥺</h1></>);
     }
 
