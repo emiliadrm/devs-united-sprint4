@@ -77,15 +77,7 @@ deleteStyle:hover{ /*El hove del dele es distinto, porque no me funciono como el
 }
 
 .submitInputStyle:hover {
-    background: chartreuse;
-}
-
-.submitInputStyle:focus{
-    background: cornflowerblue;
-}
-
-.submitInputStyle:active{
-    background: crimson;
+    background: #800FFF;
 }
 
 .infInputStyle {
@@ -100,6 +92,15 @@ deleteStyle:hover{ /*El hove del dele es distinto, porque no me funciono como el
 .textInputStyle {
     display: flex;
     flex-direction: column;
+}
+
+.alertSpan {
+    color: #F50D5A;
+    font-family: FiraCode-Regular;
+    size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 015px;
 }
 
 .inputFieldStyle {
@@ -126,6 +127,11 @@ deleteStyle:hover{ /*El hove del dele es distinto, porque no me funciono como el
     color: #F50D5A;
     font-family: FiraCode-regular;
     font-size: 8px;
+}
+
+.redline {
+    border-image: fill;
+    border-color: red;
 }
 
 /*ESTILOS DE COMPONENTE LikeButton.jsx*/

@@ -99,7 +99,7 @@ export default function UserProfile() {
                         {!showFav ?
                             <div className="bodyTweetsPageUser flexCenter">
                                 {tweetsForUser.length === 0 ?
-                                    (<><h1>Aun no tienes tweets 🥺</h1></>) : 
+                                    (<><h1>You don't have any tweet to show up🥺</h1></>) : 
                                     (tweetsForUser.sort((mesgA, mesgB) => mesgA.unixDate < mesgB.unixDate ? 1 : -1).map((dataTweet, index) => 
                                         <TweetComponent 
                                             key={index}
@@ -116,7 +116,7 @@ export default function UserProfile() {
                         :
                         <>
                             <div className="bodyTweetsPageUser flexCenter">
-                                {tweetsFavUser.length === 0 ? (<h1>Aun no tienes tweets favoritos 🥺</h1>) :
+                                {tweetsFavUser.length === 0 ? (<h1>You don't have any favorite tweet to show up🥺</h1>) :
                                     (tweetsFavUser?.sort((mesgA, mesgB) => mesgA.unixDate < mesgB.unixDate ? 1 : -1).map((dataTweet, index) => 
                                             <TweetComponent 
                                                 key={index}
@@ -137,7 +137,7 @@ export default function UserProfile() {
                 <>
                     <div className="cssLinestyle flexCenter"></div>
                     <div className="bodyTweetsPageUser flexCenter">
-                        { tweetsForUser.length === 0 ? (<><h1>Aun no tiene tweets 🥺</h1></>) :
+                        { tweetsForUser.length === 0 ? (<><h1>This user don't have any tweets to show up🥺</h1></>) :
                         (tweetsForUser?.sort((mesgA, mesgB) => mesgA.unixDate < mesgB.unixDate ? 1 : -1).map((dataTweet, index) => 
                             <TweetComponent 
                                 key={index}

@@ -23,7 +23,7 @@ export default function ConfigPage() {
     const { user, profiles } = useContext(AppContext);
     const [ newUsername, setNewUsername ] = useState('');
     const [ pickColor, setPickColor ] = useState();
-    const [alertName, setAlertName] = (false);
+    const [alertName, setAlertName] = useState(false);
 
     if (user == null || profiles.length === 0) {
         return(<LoadingPage/>);

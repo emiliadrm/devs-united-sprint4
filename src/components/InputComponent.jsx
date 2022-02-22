@@ -12,17 +12,18 @@ function InputComponent() {
     const loggedUserProfile = getProfileForUID(profiles, user?.uid);
 
     const [tweetM, setTweetM] = useState("");
-    // const [alertW, setAlertW] = useState(false);
+    const [alertW, setAlertW] = useState(false);
 
     const handleChange = (e) => {
         e.preventDefault();
-        setTweetM(e.target.value); 
+        setTweetM(e.target.value);
+        setAlertW(false);
     }; 
     
     const sendTweetM = (e) => {
         e.preventDefault();
         if(tweetM.length === 0){
-            // no sure what to put here
+            setAlertW(true);
         } else {
             firestore
                 .collection("tweets")
@@ -68,6 +69,7 @@ function InputComponent() {
                     <span style={{ color: "#FFFFFF" }}>{tweetLarge}</span>
                     <span style={{ color: "#f50d5a" }}>200 max.</span>
                 </div>
+                {alertW ? (<span className="alertSpan">⚠️You can't send a empty message⚠️</span>) : null}
                 <input type="submit" className="submitInputStyle" onClick={sendTweetM} value="POST"/>
             </form>
     )
