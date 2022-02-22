@@ -1,24 +1,53 @@
-import React, { useContext } from "react";
+
+import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppProvider"
-import { firestore /*auth, loginWithGoogle, logout */} from "../firebase";
+import { firestore } from "../firebase";
 
-function TextField() {
+import { getProfileForUID, getUnixTime } from "../helpers";
 
-    const context = useContext(AppContext);
+function InputComponent() {
+
+    const { profiles, user } = useContext(AppContext);
+
+    const loggedUserProfile = getProfileForUID(profiles, user?.uid);
+
+    const [tweetM, setTweetM] = useState("");
+    const [alertW, setAlertW] = useState(false);
 
     const handleChange = (e) => {
         e.preventDefault();
-        context.setTweetM({ tweetMessage: e.target.value }); }; 
+        setTweetM(e.target.value);
+        setAlertW(false);
+    }; 
     
     const sendTweetM = (e) => {
         e.preventDefault();
-        firestore
-            .collection("tweets")
-            .add(context.tweetM)
-            .then(() => {
-                context.setTweetM({ tweetMessage:"" });
-            }); 
+        if(tweetM.length === 0){
+            setAlertW(true);
+        } else {
+            firestore
+                .collection("tweets")
+                .add({
+                    email: loggedUserProfile.email,
+                    photoURL: loggedUserProfile.photoURL,
+                    tweetMessage: tweetM,
+                    uid: user.uid,
+                    unixDate: getUnixTime(),
+                }).then(() => {
+                        setTweetM('');
+                });
+            }
       };
+
+    const tweetLarge = tweetM.length;
+
+    const barProgressCss = () => {
+        if (tweetLarge === 0) {
+            return '0';
+        } else {
+            return `${tweetLarge / 2}`;
+        }
+    }
 
     return (
             <form action="" className="textInputStyle">
@@ -26,20 +55,24 @@ function TextField() {
                     className="inputFieldStyle"
                     placeholder="What's happening?"
                     name="tweetText" 
-                    value={context.tweetM.tweetMessage}
+                    value={tweetM}
                     id="" 
                     cols="30" 
                     rows="10" 
+                    minLength="1"
                     maxLength="200"
                     onChange={handleChange}
+                    required
                     ></textarea>
+                <div className="barStyle" style={{width: barProgressCss() + "%"}}></div>
                 <div className="infInputStyle">
-                    <span style={{ color: "#FFFFFF" }}>1</span>
+                    <span style={{ color: "#FFFFFF" }}>{tweetLarge}</span>
                     <span style={{ color: "#f50d5a" }}>200 max.</span>
                 </div>
+                {alertW ? (<span className="alertSpan">⚠️You can't send a empty message⚠️</span>) : null}
                 <input type="submit" className="submitInputStyle" onClick={sendTweetM} value="POST"/>
             </form>
     )
 }
 
-export default TextField;
+export default InputComponent;

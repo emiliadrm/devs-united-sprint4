@@ -1,5 +1,6 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDUHjOyuKzsuk9Xkj6MdFqyENQfXKHxJrA",
@@ -11,14 +12,11 @@ const firebaseConfig = {
   };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 // Exporta la funcionalidad de la DB
-export const firestore = firebase.firestore()
-// exporta el paquete de firebase para poder usarlo
-export default firebase
+export const firestore = firebase.firestore();
 
-
-/*login social con FIREBASE:
+//login social con FIREBASE:
 
 // -- el modulo de la autenticacion --
 export const auth = firebase.auth();
@@ -32,4 +30,6 @@ export const loginWithGoogle = () => auth.signInWithPopup(provider);
 // -- la utilidad para hacer logout --
 export const logout = () => auth.signOut();
 
-*/
+
+// exporta el paquete de firebase para poder usarlo
+export default firebase;

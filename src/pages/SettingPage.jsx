@@ -4,6 +4,7 @@ import logo from "../resources/logo.svg";
 import { firestore } from "../firebase";
 import { AppContext } from "../context/AppProvider";
 import "../styles/style.css";
+import closeIcon from '../resources/close.svg';
 import LoadingPage from "./LoadingPage";
 
 import { getProfileForUID, verifiedExistUsername} from "../helpers";
@@ -20,13 +21,13 @@ const colorList = [
 export default function ConfigPage() {
     const navigate = useNavigate();
     const { user, profiles } = useContext(AppContext);
-    const [ newUsername, setNewUsername ] = useState(user.displayName);
+    const [ newUsername, setNewUsername ] = useState('');
     const [ pickColor, setPickColor ] = useState();
     const [alertName, setAlertName] = useState(false);
 
     if (user == null || profiles.length === 0) {
         return(<LoadingPage/>);
-    } // siento que deberia ir en otra parte, luego lo cambio
+    }
 
     // si no esta logueado {}, si esta logueado trae info del usuario
     const loggedUserProfile = getProfileForUID(profiles, user?.uid)
@@ -35,7 +36,7 @@ export default function ConfigPage() {
 
     const handleInfo = (e) => {
         e.preventDefault();
-        setNewUsername(e.target.value); 
+        setNewUsername(e.target.value);
         setAlertName(false);
     };
     
@@ -66,20 +67,24 @@ export default function ConfigPage() {
         <div className="bodyConfig">
             <img className="devLogo" src={logo} alt="" />
             <div className="devLogin">
+                <button className="buttonPosition" onClick={() => navigate(-1)}>
+                    <img src={closeIcon} alt="" width="36px"s/>
+                </button>
                 <div className="tittlePosition">
-                    <h1 className="loginTittle">WELCOME</h1>
-                    <h1 className="loginTittle"><span style={{ color: "#f50d5a"}}>{user.displayName}!</span></h1>
+                    <h1 className="loginTittle">YOUR USERNAME NOW IS</h1>
+                    <h1 className="loginTittle"><span style={{ color: "#f50d5a"}}>{loggedUserProfile.username}!</span></h1>
                 </div>
                 <input
                     type="text"
-                    placeholder="Type your username"
+                    placeholder="Type your new username"
                     className="inputNickname" minLength="5"
                     maxLength="12"
+                    id={loggedUserProfile.id}
                     value={newUsername}
                     onChange={handleInfo}
                 />
                 {alertName ? (<><h1>Este nombre de usuario ya existe 🚨</h1></>) : null}
-                <h2 className="loginSubTittle">Select your favorite color</h2>
+                <h2 className="loginSubTittle">Select the new color you want</h2>
                 <div className="selectColorClass">
                     {colorList.map((color, index) => {
                         const isSelected = color === selectedColor;
@@ -89,12 +94,12 @@ export default function ConfigPage() {
                                     onClick={() => setPickColor(color)}
                                     key={index}
                                     className={classColor}
-                                    style={{ backgroundColor: color}}
+                                    style={{ backgroundColor: color }}
                                 />
                         );
                     })}
                 </div>
-                <button className="continueButton" onClick={sendInfo}>CONTINUE</button>
+                <button className="continueButton" onClick={sendInfo}>SAVE</button>
                 <p className="copyText">© 2020 Devs_United - <span style={{ color: "#f50d5a" }} >BETA</span> </p>
             </div>
         </div>

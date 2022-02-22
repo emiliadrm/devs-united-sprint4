@@ -1,33 +1,52 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppProvider"
-
-
-import TweetField from "../components/TweetComponent"
-import InputComponent from "../components/InputComponent"
+// IMAGENES
 import Titulo from "../resources/title.svg"
 import Logito from "../resources/logo-small.svg"
-import ProfileDefault from "../resources/profilePicDefault.svg"
+// COMPONENTES
+import TweetComponent from "../components/TweetComponent"
+import InputComponent from "../components/InputComponent"
+import { LogoutButton } from "../components/LogoutButton"
+import LoadingPage from "./LoginPage";
 
-export default function Feed() {
-    const context = useContext(AppContext);
+import { getProfileForUID } from "../helpers";
+
+export default function FeedPage() {
+
+    const { user, messages, profiles} = useContext(AppContext);
+    const loggedUserProfile = getProfileForUID(profiles, user?.uid)
+    
+    if (loggedUserProfile == null) {
+        return (<LoadingPage/>)
+    }
 
     return(
         <main>
             <header className="navBar">
-                <img src={ProfileDefault} width="33px"alt="" />
+                <Link to={`/user/${loggedUserProfile.username}`}>
+                    <img src={user.photoURL} alt="" style={{borderRadius:`50%`, width:'33px'}}/>
+                </Link>
                 <img src={Logito} alt="" />
                 <img src={Titulo} alt="" />
+                <LogoutButton/>
             </header>
             <section className="textSection">
-                <img src={ProfileDefault} alt="" className="profileStyleFeed"/>
+                <Link to={`/user/${loggedUserProfile.username}`}>
+                    <img src={user.photoURL} alt="" className="profileStyleFeed"/>
+                </Link>
                 <InputComponent />
             </section>
             <section className="tweetSection">
-                {context.messages.map((tweet) => 
-                    <TweetField 
+                {messages.sort((mesgA, mesgB) => mesgA.unixDate < mesgB.unixDate ? 1 : -1).map((tweet, index) => 
+                    <TweetComponent
+                        key={index}
+                        uid={tweet.uid}
                         tweetMensaje={tweet.tweetMessage}
                         id={tweet.id}
                         likes={tweet.likes}
+                        photo={tweet.photoURL}
+                        unixDate={tweet.unixDate}
                     />)} 
             </section>
         </main>

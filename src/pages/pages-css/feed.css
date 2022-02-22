@@ -1,0 +1,23 @@
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background: #250C23;
+    padding: 10px 250px;
+    /*hay formas de poner margin manteniendo el color?*/
+}
+
+.textSection {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #150714;
+    padding: 20px 20px;
+}
+
+.tweetSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px;
+}
