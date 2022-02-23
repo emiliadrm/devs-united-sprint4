@@ -15,7 +15,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "deploy": "npm run build && firebase deploy",
     "build": "react-scripts build",
     "test": "react-scripts test",
