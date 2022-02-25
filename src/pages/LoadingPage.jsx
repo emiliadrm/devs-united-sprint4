@@ -1,5 +1,3 @@
-// import loadingGif from "../resources/Spinner.gif";
-
 export default function LoadingPage () {
     return(
         <div className="loadingStyle">

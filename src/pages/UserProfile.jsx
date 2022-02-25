@@ -60,7 +60,8 @@ export default function UserProfile() {
     const infLikesForUser = getLikesForUser(user, favoriteCounter);
     const tweetsIdsArray = searchTweetsForId(infLikesForUser);
     const tweetsFavUser = getTweetsForId(tweetsIdsArray, messages); 
-
+    const userVerifiedToShow = verifiedUserLogged(user, userProfileDB);
+    
     return(
         <main>
             <header className="navBar">
@@ -70,7 +71,7 @@ export default function UserProfile() {
                     </button>
                 </div>
                 <div className="navBarSubComponent">
-                    {verifiedUserLogged(user, userProfileDB) ? (
+                    {userVerifiedToShow ? (
                         <>
                             <LogoutButton/>
                             <button onClick={handleSetting}><img src={settingIcon} alt="" width="28px"/></button>
@@ -79,7 +80,7 @@ export default function UserProfile() {
                 </div>
             </header>
             <section className="flexCenter">
-            <   div className="flexCenter fondoOscuro">
+                <div className="flexCenter fondoOscuro">
                     <img 
                         src={userProfileDB.photoURL} 
                         alt="" 

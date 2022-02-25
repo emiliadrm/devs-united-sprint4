@@ -31,7 +31,6 @@ function App() {
   const { user, setUser, setMessages, setProfiles, setFavoriteCounter} = useContext(AppContext)
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      console.log('USER', user.uid);
       setUser(user); // user.uid
     });
   }, []) //eslint-disable-line
@@ -54,7 +53,6 @@ function App() {
         return {
           id: doc.id,
           uid: doc.uid,
-          // username: doc.username,
           photoURL: doc.photoURL,
           email: doc.email,
           color: doc.color,
@@ -67,6 +65,10 @@ function App() {
     });
     return unsubscribe;
   }, [user]);  //eslint-disable-line 
+
+  // Estoy usando "//eslint-disable-line" para evitar el warning de la falta de dependencia
+  // Sin embargo, no necesito que se ejecute el UseEffect tantas veces, ya que me provoco errores de loops infinito en firebase
+  // Haciendo que se limite mi uso de firebase. Hay funciones estables que no necesitan un listening constante.
   
   // OBTENER INFORMACION DEL PERFIL LOGEADO
   useEffect(() => {

@@ -7,8 +7,6 @@ export function getProfileForUID(profiles = [], uid) {
 }
 
 
-
-
 export function getIDforUsername(profiles = [], paramUsername) {
 
   if (paramUsername == null || paramUsername === ''){
@@ -17,6 +15,7 @@ export function getIDforUsername(profiles = [], paramUsername) {
   return profiles.find((profile) => profile.username === paramUsername)
   // retorna elemento con username === parametroUsername, si no consigue entonces retorna undefined
 }
+
 
 export function getProfileForId(profiles = [], id) {
 
@@ -27,8 +26,6 @@ export function getProfileForId(profiles = [], id) {
 }
 
 
-
-
 export function getTweetsForUsername(perfil, tweets){
 
   if (perfil == null || perfil === ''){
@@ -37,9 +34,6 @@ export function getTweetsForUsername(perfil, tweets){
   // retorna los tweets que tengan el mismo UID del perfil seleccionado
   return tweets?.filter((tweet) => tweet.uid === perfil.id);
 }
-
-
-
 
 
 export function getCountLike(tweet, arrayLikes) {
@@ -57,9 +51,6 @@ export function getCountLike(tweet, arrayLikes) {
 }
 
 
-
-
-
 export function getLikesForUser(user, arrayFavorites) {
 
   if (user == null){
@@ -74,9 +65,6 @@ export function getLikesForUser(user, arrayFavorites) {
 }
 
 
-
-
-
 export function searchTweetsForId(arrayInf) {
 
   if (arrayInf == null){
@@ -86,6 +74,7 @@ export function searchTweetsForId(arrayInf) {
 // Retorna un array de IDS
   return arrayInf.map(arrayInf => arrayInf.tweetLikeID);
 }
+
 
 export function getTweetsForId(favsid, tweets){
 
@@ -102,6 +91,7 @@ export function getUnixTime() {
   const today = new Date();
   return today.getTime();
 }
+
 
 export function getDateFromUnixTime(unixDate) {
   const date = new Date(unixDate);
