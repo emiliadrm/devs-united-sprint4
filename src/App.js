@@ -24,15 +24,21 @@ import FeedPage from "./pages/FeedPage";
 import ConfigPage from "./pages/ConfigPage";
 import NotFound from "./pages/NotFound";
 import SettingPage from "./pages/SettingPage";
-import LoadingPage from "./pages/LoadingPage";
 
 
 function App() {
 
-  const context = useContext(AppContext)
+  const { user, setUser, setMessages, setProfiles, setFavoriteCounter} = useContext(AppContext)
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      console.log('USER', user.uid);
+      setUser(user); // user.uid
+    });
+  }, []) //eslint-disable-line
  
   // OBTENER INFORMACION DE LOS TWEETS INDIVIDUALMENTE
   useEffect(() => {
+    if (!user) return;
 
     const unsubscribe = firestore.collection("tweets")
       .onSnapshot((snapshot) => {
@@ -57,17 +63,14 @@ function App() {
           tweetMessage: doc.tweetMessage,
         };
       })
-      context.setMessages(tweets);
-    });
-    auth.onAuthStateChanged((user) => {
-      context.setUser(user); // user.uid
+      setMessages(tweets);
     });
     return unsubscribe;
-  }, []); //eslint-disable-line
- 
+  }, [user]);  //eslint-disable-line 
   
   // OBTENER INFORMACION DEL PERFIL LOGEADO
   useEffect(() => {
+    if (!user) return;
 
     const unsubscribe = firestore.collection("profile")
       .onSnapshot((snapshot) => {
@@ -90,14 +93,17 @@ function App() {
             likes: doc.likes
           };
         });
-        context.setProfiles(profilesFromDB);
+        setProfiles(profilesFromDB);
     });
     return unsubscribe;
-  }, []); //eslint-disable-line
+  }, [user]); //eslint-disable-line
 
   // OBTENER INFORMACION DE LIKES
-useEffect(() => {
- const unsubscribe = firestore.collection("favorites")
+  useEffect(() => {
+    if (!user) return;
+
+    const unsubscribe = firestore
+      .collection("favorites")
       .onSnapshot((snapshot) => {
         const result3 = [];
         snapshot.forEach((d) => {
@@ -113,14 +119,15 @@ useEffect(() => {
             tweetLikeID: doc.tweetLikeID,
           };
         });
-        context.setFavoriteCounter(counterFavoriteLikes);
-    });
+        setFavoriteCounter(counterFavoriteLikes);
+      });
     return unsubscribe;
-  }, []); //eslint-disable-line 
+  }, [user]); //eslint-disable-line 
+
   return (
     <div className="App">
       <Routes>
-        {context.user ? (<>
+        {user ? (<>
           <Route path="/" element={<FeedPage/>}/>
           <Route path="/home" element={<FeedPage/>}/>
           <Route path="/inital-setting" element={<ConfigPage />} />
@@ -128,7 +135,6 @@ useEffect(() => {
           <Route path="/user/:username" element={<UserProfile/>} />   
         </>) : <Route path="/" element={<LoginPage/>}/>} 
         <Route path="*" element={<NotFound/>} />
-        <Route path="loading" element={<LoadingPage/>} />
       </Routes>
     </div>
   );
