@@ -34,6 +34,10 @@ function App() {
       setUser(user); // user.uid
     });
   }, []) //eslint-disable-line
+
+  // Estoy usando "//eslint-disable-line" para evitar el warning de la falta de dependencia
+  // Sin embargo, no necesito que se ejecute el UseEffect tantas veces, ya que me provoco errores de loops infinito en firebase
+  // Haciendo que se limite mi uso de firebase. Hay funciones estables que no necesitan un listening constante.
  
   // OBTENER INFORMACION DE LOS TWEETS INDIVIDUALMENTE
   useEffect(() => {
@@ -66,9 +70,7 @@ function App() {
     return unsubscribe;
   }, [user]);  //eslint-disable-line 
 
-  // Estoy usando "//eslint-disable-line" para evitar el warning de la falta de dependencia
-  // Sin embargo, no necesito que se ejecute el UseEffect tantas veces, ya que me provoco errores de loops infinito en firebase
-  // Haciendo que se limite mi uso de firebase. Hay funciones estables que no necesitan un listening constante.
+  
   
   // OBTENER INFORMACION DEL PERFIL LOGEADO
   useEffect(() => {

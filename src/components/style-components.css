@@ -42,6 +42,7 @@
 }
 
 .userNameStyle {
+    max-width: 350px;
     color: #250C23;
     font-size: 20px;
 }
